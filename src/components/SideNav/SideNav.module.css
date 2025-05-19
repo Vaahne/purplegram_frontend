@@ -1,0 +1,18 @@
+.sideNav > ul{
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+.sideNav{
+    /* width: 5rem; */
+    height: 100vh;
+    position: fixed;
+}
+.navItem{
+    font-size: 40px;
+}
+a:title{
+    border-radius: 2rem;
+}

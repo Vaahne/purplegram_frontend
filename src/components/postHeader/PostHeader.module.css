@@ -1,0 +1,15 @@
+.profilePic{
+    border-radius: 50%;
+    height: 2rem;
+}
+.postHeader{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid transparent;
+}
+.closePost{
+    border-radius: 50%;
+    width: .1rem;
+    background-color: transparent;
+    text-align: center;
+}

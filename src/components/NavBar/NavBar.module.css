@@ -1,0 +1,31 @@
+.nav > ul{
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(251, 251, 251);
+    /* color: white; */
+    font-weight: bolder;
+    list-style-type: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 9999;
+}
+
+.navItem{
+    font-size: 40px;
+    margin-top: 1rem;
+}
+.logoLetter{
+    border-radius: 50%;
+    height: 3rem;
+    margin:1rem;
+}
+.logoLi{
+    display: flex;
+    justify-content: space-around;
+}
+.form{
+    margin: auto 0;
+}

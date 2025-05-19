@@ -1,0 +1,21 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  /* overflow-x: hidden; */
+}
+
+#root {
+  height: 70px;
+  width: 100vw;
+  margin: 0;
+  padding: 0; /* Remove extra padding */
+  text-align: center;
+  min-height: 100vh;  /* Ensures it fills the screen */
+}
+.displayContainer{
+  display: flex;
+  padding-top: 7rem;
+}
+.rightContainer{
+  flex-grow: 1;
+}
