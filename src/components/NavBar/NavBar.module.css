@@ -29,3 +29,7 @@
 .form{
     margin: auto 0;
 }
+.form > input{
+    padding: .2rem;
+    border-radius: 2rem;
+}
