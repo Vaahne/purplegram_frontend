@@ -7,19 +7,23 @@ const baseURL = import.meta.env.VITE_baseURL;
 
 export default function PostProvider({children}){
     const[posts,setPosts] = useState([]);
+   
     const {cookies} = useAuth();
 
     useEffect(()=>{
-        const getPosts = async ()=>{
-            const res = await axios(`${baseURL}/posts/getPosts`,{
-                            headers: {'x-auth-token':cookies.token}
-                        });
-            setPosts(res.data);
-            
-        };
-        
-        if(cookies.token)
-            getPosts();
+        try {
+            const getPosts = async ()=>{
+                const res = await axios(`${baseURL}/posts/getPosts`,{
+                                headers: {'x-auth-token':cookies.token}
+                            });
+                setPosts(res.data);
+            };
+                      
+            if(cookies.token)
+                getPosts();
+        } catch (err) {
+            console.error(err.message);
+        }      
     },[cookies.token]);
 
     const value={
@@ -30,6 +34,6 @@ export default function PostProvider({children}){
     return <PostContext.Provider value={value}>{children}</PostContext.Provider>
 }
 
-export function friendPosts(){
+export function postsInfo(){
     return useContext(PostContext);
 }

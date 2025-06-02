@@ -3,9 +3,9 @@ import NavBar from './components/NavBar/NavBar';
 import { Routes,Route } from 'react-router-dom';
 import Notifications from './components/Notifications';
 import FriendRequest from './pages/FriendRequests';
-import dataContext from './context/dataContext.jsx';
-import Home from './pages/HomePage';
-import data from './utilities/data.mjs';
+// import dataContext from './context/dataContext.jsx';
+// import Home from './pages/HomePage';
+// import data from './utilities/data.mjs';
 import Posts from './components/Posts/Posts';
 import PageNotFound from './pages/PageNotFound';
 import AuthPage from './pages/AuthPage';
@@ -15,9 +15,10 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
 
   function App() {
 
+
     return (
       <>
-        <dataContext.Provider value={data}>
+        {/* <dataContext.Provider value={data}> */}
         <NavBar/>
         <main className="displayContainer">
             <SideNav/>
@@ -33,7 +34,7 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
                 </Routes>
             </div>
         </main>
-        </dataContext.Provider>
+        {/* </dataContext.Provider> */}
       </>
     )
   }

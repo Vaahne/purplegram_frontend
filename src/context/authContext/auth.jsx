@@ -25,7 +25,8 @@ export default function AuthProvider({children}){
     const value = useMemo(()=>({
         signUp,
         login,
-        logout
+        logout,
+        cookies
     }),[cookies]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

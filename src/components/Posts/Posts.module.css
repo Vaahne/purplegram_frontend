@@ -6,3 +6,10 @@
     border-radius: 1rem;
     box-shadow: 0 0 36px 4px rgba(0,0,0,.18);
 }
+.postContent{
+    border: .1rem solid grey;
+}
+.commentSection{
+    display: flex;
+    justify-content: space-between;
+}
