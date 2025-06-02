@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 export default function Search(){
     return <>
         <div className={styles.searchFriends}> 
-            <input type="text" placeholder='Search Purplegram'/>
+            <input type="text" placeholder='Search Friends'/>
         </div>
     </>;
 }

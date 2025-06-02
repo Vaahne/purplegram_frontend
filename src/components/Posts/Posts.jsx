@@ -2,6 +2,7 @@ import {  useContext, useEffect, useState } from "react";
 import PostHeader from "../postHeader/PostHeader.jsx";
 import dataContext from "../../context/dataContext.jsx";
 import style from './Posts.module.css';
+import Comments from "../Comments/Comments.jsx";
 
 export default function Posts(){
   const data = useContext(dataContext);
@@ -29,7 +30,7 @@ export default function Posts(){
                 <PostHeader key={post.postId} name={user.name} onClose={()=>handleRemove(post.postId)}/>
                 <div>{post.post_text || post.post_photo}</div>
                 <hr/>
-                <div>Comment Section</div>
+                  <Comments />
               </div>
               </>
               )

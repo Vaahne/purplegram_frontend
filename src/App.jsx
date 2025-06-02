@@ -3,7 +3,7 @@ import NavBar from './components/NavBar/NavBar';
 import { Routes,Route } from 'react-router-dom';
 import Notifications from './components/Notifications';
 import FriendRequest from './pages/FriendRequests';
-import dataContext from './context/dataContext';
+import dataContext from './context/dataContext.jsx';
 import Home from './pages/HomePage';
 import data from './utilities/data.mjs';
 import Posts from './components/Posts/Posts';
@@ -11,6 +11,7 @@ import PageNotFound from './pages/PageNotFound';
 import AuthPage from './pages/AuthPage';
 import SideNav from './components/SideNav/SideNav';
 import CreatePost from './pages/CreatePost';
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 
   function App() {
 
@@ -22,7 +23,7 @@ import CreatePost from './pages/CreatePost';
             <SideNav/>
             <div className='rightContainer'> 
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/" element={<LandingPage/>}/>
                     <Route path="/friendrequest" element={<FriendRequest/>}/>
                     <Route path="/notifications" element={<Notifications/>} />
                     <Route path='/auth' element={<AuthPage/>}/>

@@ -1,7 +1,7 @@
  import { useContext } from 'react';
 import profile from '../../assets/images/profilePic.jpg';
  import styles from './PostHeader.module.css';
-import dataContext from '../../context/dataContext';
+import dataContext from '../../context/dataContext.jsx';
 
 export default function PostHeader({name,onClose}){
     let data = useContext(dataContext);

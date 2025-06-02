@@ -1,0 +1,11 @@
+what is done ?
+    set up
+    .env
+    nav bar
+    side nav
+
+what to do?
+    login 
+    dashboard should get the posts of user friends
+
+    while doing change password: add a check to make sure both old and new password dont match.

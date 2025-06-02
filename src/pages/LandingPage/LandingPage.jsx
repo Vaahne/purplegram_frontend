@@ -1,0 +1,38 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext/auth";
+import { useNavigate } from "react-router-dom";
+import styles from './LandingPage.module.css';
+
+export default function LandingPage(){
+    const {login} = useAuth();
+    const nav = useNavigate();
+    
+    const[formData,setFormData] = useState({
+        email: '',
+        password: ''
+    })
+
+    function handleChange(e){
+        setFormData({...formData,[e.target.name]:e.target.value});
+    }
+    async function handleSubmit(e){
+        e.preventDefault();
+        await login(formData);
+        nav('/posts');
+    }
+    return <>
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <input type="email" placeholder="Email" name="email" onChange={handleChange} value={formData.email}/>
+            <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
+            <input type="submit" value='Login'/>
+            {/* <div style={{display:flex}}>
+                <hr/>
+                <p>or</p>
+                <hr/>
+            </div> */}
+            <Link to="/">Forgot password?</Link>
+            <p>Don't have an account?<Link to="createUser">Sign up</Link></p>
+        </form>
+    </>;
+}
