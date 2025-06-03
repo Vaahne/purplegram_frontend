@@ -1,0 +1,14 @@
+.settingsContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    margin: 3% auto;
+    font-size: larger;
+    text-align: left;
+    max-width: 20rem;
+}
+
+
+/* .modalStyle{
+    
+} */

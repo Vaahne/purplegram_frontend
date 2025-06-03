@@ -1,6 +1,6 @@
 ## Purplegram Front End
 [Back End](https://github.com/Vaahne/purplegram_backend)
-    installed react, react-icons, dotenv ,react-router-dom
+    installed react, react-icons, dotenv ,react-router-dom , react-modal
 
 ## Capability
 - authentication
@@ -24,7 +24,7 @@
 - Landing page/homepage - show all route - path:'/'
 - Auth - path:'/auth'
     - login form 
-    - register form
+    - register form (/createuser)
 - User dashboard/posts/ notifications page - path:'/dashboard'
 - show one post            - path:'/post/:id'
 - create Post     - path:'/create'
@@ -44,3 +44,4 @@
 + create very basic react page components for each page want to create
 + create routing for pages in app.jsx
 + create a super simple nav to navigate
+

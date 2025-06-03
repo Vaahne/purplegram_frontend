@@ -1,0 +1,9 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-width: 20rem;
+}
+.form > *{
+    margin: .3rem;
+}

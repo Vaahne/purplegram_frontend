@@ -1,6 +1,6 @@
 .postContainer{
     /* border: .2rem solid rgb(184, 179, 179); */
-    width: 20rem;
+    width: 36rem;
     margin: 1rem auto;
     padding: 1rem;
     border-radius: 1rem;
@@ -12,4 +12,13 @@
 .commentSection{
     display: flex;
     justify-content: space-between;
+}
+.spinner {
+  animation: spin 1s linear infinite;
+  font-size: 24px; /* or your desired size */
+  color: #555;     /* optional color */
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }

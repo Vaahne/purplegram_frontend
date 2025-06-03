@@ -1,0 +1,4 @@
+.postBody{
+    display: flex;
+    flex-direction: column;
+}

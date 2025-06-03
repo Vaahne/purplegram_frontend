@@ -1,11 +1,12 @@
 .profilePic{
     border-radius: 50%;
-    height: 2rem;
+    height: 40px;
+    width: 40px;
 }
 .postHeader{
     display: flex;
     justify-content: space-between;
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
 }
 .closePost{
     border-radius: 50%;

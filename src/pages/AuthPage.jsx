@@ -1,5 +1,8 @@
+import LandingPage from "./LandingPage/LandingPage";
+
 export default function AuthPage(){
-    return <>
-        <h1>Auth Page</h1>
-    </>
+
+    // const [newUser,setNewUser] = useState(false);
+    
+    return <LandingPage/>
 }

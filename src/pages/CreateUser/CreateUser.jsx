@@ -14,12 +14,7 @@ export default function CreateUser(){
         photo: '',
         gender: ''
     });
-    // function handleChange(e){
-    //     if(e.target.name == 'photo')
-    //         setFormData({...formData,photo: e.target.file[0]});
-    //     else
-    //         setFormData({...formData,[e.target.name]:e.target.value});
-    // }
+    
     function handleChange(e) {
         const { name, type, value, files } = e.target;
         if (type === 'file') {
@@ -28,6 +23,7 @@ export default function CreateUser(){
             setFormData({ ...formData, [name]: value });
         }
     }
+    
     function handleSubmit(e){
         e.preventDefault();
         if(formData.password !== formData.password2)

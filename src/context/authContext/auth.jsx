@@ -27,12 +27,14 @@ export default function AuthProvider({children}){
     async function login(formData){
         const res = await axios.post(`${baseURL}/users/auth`,formData);
         setCookie('token',res.data.token);
-    }
+    }    
+
     function logout(){
         ['token'].forEach((t)=>{
             removeCookie(t);
         });
     }
+
     const value = useMemo(()=>({
         signUp,
         login,

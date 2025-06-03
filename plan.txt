@@ -5,7 +5,15 @@ what is done ?
     side nav
 
 what to do?
-    login 
-    dashboard should get the posts of user friends
+    login - done
+    dashboard should get the posts of user friends - done
+
+todo ?
+    create post (text or photo) - done
+    search purplegram for users 
+    friend request
+    notifications
+    
+    Protected Routes
 
     while doing change password: add a check to make sure both old and new password dont match.
