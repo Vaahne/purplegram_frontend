@@ -23,6 +23,7 @@ export default function LandingPage(){
     }
     return <>
         <form onSubmit={handleSubmit} className={styles.form}>
+            <h3>Login Page</h3>
             <input type="email" placeholder="Email" name="email" onChange={handleChange} value={formData.email}/>
             <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
             <input type="submit" value='Login'/>
@@ -32,7 +33,7 @@ export default function LandingPage(){
                 <hr/>
             </div> */}
             <Link to="/">Forgot password?</Link>
-            <p>Don't have an account?<Link to="createUser">Sign up</Link></p>
+            <p>Don't have an account?<Link to="/createuser">Sign up</Link></p>
         </form>
     </>;
 }

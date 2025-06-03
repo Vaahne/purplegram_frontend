@@ -12,6 +12,7 @@ import AuthPage from './pages/AuthPage';
 import SideNav from './components/SideNav/SideNav';
 import CreatePost from './pages/CreatePost';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
+import CreateUser from './pages/CreateUser/CreateUser.jsx';
 
   function App() {
 
@@ -29,6 +30,7 @@ import LandingPage from './pages/LandingPage/LandingPage.jsx';
                     <Route path="/notifications" element={<Notifications/>} />
                     <Route path='/auth' element={<AuthPage/>}/>
                     <Route path='/create' element={<CreatePost/>}/>
+                    <Route path='/createuser' element={<CreateUser/>}/>
                     <Route path='/posts' element={<Posts/>}/>
                     <Route path="*" element={<PageNotFound/>}/>
                 </Routes>

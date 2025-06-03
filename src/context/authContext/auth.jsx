@@ -9,7 +9,18 @@ export default function AuthProvider({children}){
     const baseURL = import.meta.env.VITE_baseURL;
 
     async function signUp(formData){
-        const res = await axios.post(`${baseURL}/users/register`,formData);
+        const data = new FormData();
+        data.append('name',formData.name);
+        data.append('email',formData.email);
+        data.append('password',formData.password);
+        data.append('dob',formData.dob);
+        data.append('gender',formData.gender);
+        data.append('photo',formData.photo);
+
+        console.log('formData : ',formData);
+        const res = await axios.post(`${baseURL}/users/register`,data,{
+                        headers:{}
+                    });
         setCookie('token',res.data.token);
     }
 
