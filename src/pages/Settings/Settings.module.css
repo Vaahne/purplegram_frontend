@@ -8,7 +8,29 @@
     max-width: 20rem;
 }
 
-
-/* .modalStyle{
-    
+/* .modalStyle {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+  position: relative;
 } */
+
+.changeBtn, .closeBtn {
+  background: #6a0dad;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modalStyle{
+    width: 36rem;
+    margin: 12rem auto;
+    border-radius: 1rem;
+    height: 27rem;
+    box-shadow: 0 0 36px 4px rgba(0,0,0,.18);
+    /* /* background-color: ;      */
+}

@@ -17,6 +17,10 @@
 .navItem{
     font-size: 40px;
     margin-top: 1rem;
+    position: relative;
+    display: inline-block;
+    /* transition-property: all;
+    transition-duration: 1s; */
 }
 .logoLetter{
     border-radius: 50%;
@@ -33,4 +37,26 @@
 .form > input{
     padding: .2rem;
     border-radius: 2rem;
+}
+.subElement{
+    display: none;
+    position: absolute;
+    font-size: 2rem;
+    width: 36rem;
+    background-color:  rgb(38, 38, 72);
+    color: white;
+    border-radius: 2rem;
+}
+.searchList{
+    /* display: none; */
+    position: absolute;
+    font-size: 2rem;
+    width: 300px;
+    background-color:  rgb(38, 38, 72);
+    color: white;
+    border-radius: 2rem;
+}
+.navItem:hover  .subElement
+{
+    display: block;
 }

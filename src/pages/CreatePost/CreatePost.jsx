@@ -31,7 +31,7 @@ export default function CreatePost(){
             return alert('Post cannot be empty');
         const data = new FormData();
         data.append('post_text',formData.post_text);
-        if(formData.photo != '' ){
+        if(formData.photo != '' && formData.photo){
             console.log('inside photo formdata');
             data.append('photo',formData.photo);
             data.append('postType','photo');
@@ -50,7 +50,7 @@ export default function CreatePost(){
         <form onSubmit={handleSubmit} className={styles.form}>
             <input type="text" placeholder='Your post feed' name="post_text" onChange={handleChange} value={formData.post_text}/>
             <input type="file" name="photo" onChange={handleChange} />
-            <input type="submit" value="Create Post" disabled={!formData.post_text || !formData.photo}/>
+            <input type="submit" value="Create Post" />
         </form>
     </>
 }

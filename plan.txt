@@ -10,10 +10,12 @@ what to do?
 
 todo ?
     create post (text or photo) - done
+    notifications - done
+    
     search purplegram for users 
     friend request
-    notifications
-    
-    Protected Routes
+    comments
 
-    while doing change password: add a check to make sure both old and new password dont match.
+    Protected Routes - done
+
+    while doing change password: add a check to make sure both old and new password dont match. done

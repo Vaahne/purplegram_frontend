@@ -9,7 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 import PostBody from "../PostBody/PostBody.jsx";
 
 export default function Posts(){
-  const [tasks,dispatch] = useReducer(commentReducer,null);
+  // const [tasks,dispatch] = useReducer(commentReducer,null);
   // takes the posts and renames to initialposts;
   const {posts:initialPosts} = postsInfo();
   const[posts,setPosts] = useState(initialPosts);

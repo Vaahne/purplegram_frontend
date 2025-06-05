@@ -2,3 +2,17 @@
     display: flex;
     flex-direction: column;
 }
+
+.modalStyle {
+  background: linear-gradient(135deg, #fffaf0, #716b5a); /* subtle gradient */
+  width: 30rem;
+  padding: 2rem;
+  margin: 10% auto;
+  border-radius: 1rem;
+  border: .3rem solid rgb(55, 50, 50);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+
+}

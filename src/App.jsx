@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import { Routes,Route } from 'react-router-dom';
-import Notifications from './components/Notifications';
+import Notifications from './components/Notifications/Notifications';
 import FriendRequest from './pages/FriendRequests';
 // import dataContext from './context/dataContext.jsx';
 // import Home from './pages/HomePage';
@@ -10,12 +10,13 @@ import Posts from './components/Posts/Posts';
 import PageNotFound from './pages/PageNotFound';
 // import AuthPage from './pages/AuthPage';
 // import SideNav from './components/SideNav/SideNav';
-import CreatePost from './pages/CreatePost/CreatePost.jsx';
-import LandingPage from './pages/LandingPage/LandingPage.jsx';
-import CreateUser from './pages/CreateUser/CreateUser.jsx';
-import Settings from './pages/Settings/Settings.jsx';
+import CreatePost from './pages/CreatePost/CreatePost';
+import LandingPage from './pages/LandingPage/LandingPage';
+import CreateUser from './pages/CreateUser/CreateUser';
+import Settings from './pages/Settings/Settings';
 import Modal from 'react-modal';
-import ProtectedRoutes from './components/ProtectedRoutes.jsx';
+import ProtectedRoutes from './components/ProtectedRoutes';
+import SingleUser from './pages/SingleUser/SingleUser';
 
   function App() {
     Modal.setAppElement('#root');
@@ -38,6 +39,7 @@ import ProtectedRoutes from './components/ProtectedRoutes.jsx';
                             <Route path='/settings' element={<Settings/>}/>
                             <Route path='/createpost' element={<CreatePost/>}/>
                             <Route path='/posts' element={<Posts/>}/>
+                            <Route path="/singleuser" element={<SingleUser/>}/>
                             <Route path="*" element={<PageNotFound/>}/>
                         {/* </Routes> */}
                     {/* </div>

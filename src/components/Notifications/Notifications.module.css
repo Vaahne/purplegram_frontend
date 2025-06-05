@@ -1,0 +1,9 @@
+.notificationContainer{
+    list-style-type: none;
+    background-color: rgb(74, 98, 198);
+    border-radius: 2rem;
+}
+.notification{
+    /* margin: 1em ; */
+    padding: .2rem;
+}

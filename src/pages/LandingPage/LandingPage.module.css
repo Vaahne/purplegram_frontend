@@ -1,13 +1,53 @@
 .form{
     display: flex;
     flex-direction: column;
-    width: 12rem;
+    width: 18rem;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     border: .1rem solid grey;
     border-radius: 1rem;
+    box-shadow: 0 0 36px 4px rgba(0,0,0,.18);
+    padding: 1rem;
 }
 .form > *{
     margin: .4rem;
+    
+}
+.container{
+    margin: 10rem auto;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
+}
+.img{
+    width: 34rem;
+}
+.textContainer{
+    margin: 0 auto;
+    width: 20rem;
+}
+.textContainer > p{
+    font-size: 24px;
+}
+.name{
+    color: purple;
+    /* text-shadow: 0 0 36px 4px rgba(0,0,0,.18); */
+    text-shadow: 2px 3px 4px rgba(55, 44, 44, 0.4);
+}
+.caption{
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.signup{
+    background-color: rgb(69, 219, 69);
+    width: 13rem;
+}
+.login{
+    background-color: purple;
+    width: 13rem;
+    border-radius: 1rem;
+    padding: .4rem;
+    color:white;
+
 }
