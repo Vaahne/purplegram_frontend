@@ -44,16 +44,15 @@ export default function UserSearch({search}){
     function loadingData(){
         return <p>{search}</p>;
     }
-    function handleClick(e){
-        e.preventDefault();
-        nav('/singleuser');
+    function handleClick(id){
+        nav(`/singleuser/${id}`);
     }
 
     // return result ? loaded() : loadingData()
     return (
         <div>
             {loading ? (<p>Searching...</p>) : 
-            result ? (result.map(r=> <div key={r._id} onClick={handleClick}>{r.name}</div>)): <div>No Data found</div>} 
+            result ? (result.map(r=> <div key={r._id} onClick={()=>handleClick(r._id)}>{r.name}</div>)): <div>No Data found</div>} 
         </div>
     )
 }

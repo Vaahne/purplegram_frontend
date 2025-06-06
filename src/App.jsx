@@ -39,7 +39,7 @@ import SingleUser from './pages/SingleUser/SingleUser';
                             <Route path='/settings' element={<Settings/>}/>
                             <Route path='/createpost' element={<CreatePost/>}/>
                             <Route path='/posts' element={<Posts/>}/>
-                            <Route path="/singleuser" element={<SingleUser/>}/>
+                            <Route path="/singleuser/:userId" element={<SingleUser/>}/>
                             <Route path="*" element={<PageNotFound/>}/>
                         {/* </Routes> */}
                     {/* </div>
