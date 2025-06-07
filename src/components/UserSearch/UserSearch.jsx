@@ -1,11 +1,10 @@
 import { useEffect,useState } from "react";
 import { useAuth } from "../../context/authContext/auth"
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import apiRequest from "../../apiService/apiServiceCall";
 
 export default function UserSearch({search}){
     const {cookies} = useAuth();
-    const baseURL = import.meta.env.VITE_baseURL;
     const [result,setResult] = useState([]);
     const[loading,setLoading] = useState(false);
     const nav = useNavigate();
@@ -20,10 +19,8 @@ export default function UserSearch({search}){
         const delayDebounce = setTimeout(()=>{
             const getUsers = async()=>{
             try {
-                const res = await axios.post(`${baseURL}/users/search`,{search},{
-                                headers: {'x-auth-token':cookies.token}
-                            });
-                setResult(res.data);   
+                const resData = await apiRequest('users/search',"POST",{search},cookies.token);
+                setResult(resData);
             } catch (err) {
                 console.error(err.message);
                 setResult([]);

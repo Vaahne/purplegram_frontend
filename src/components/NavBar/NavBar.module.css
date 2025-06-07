@@ -60,3 +60,7 @@
 {
     display: block;
 }
+.search{
+    border-radius: .9rem;
+    padding: .4rem;
+}

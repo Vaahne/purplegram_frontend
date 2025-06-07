@@ -31,7 +31,7 @@ export default function NavBar(){
                 <li className={style.logoLi}><Link to="/"><img src={logoLetter} className={style.logoLetter} alt=""/></Link>
                     <form className={style.form} onSubmit={(e)=>e.preventDefault()}>
                         <div>
-                            <input type="text" onChange={handleChange} value={search} placeholder="Search Purplegram" />
+                            <input type="text" onChange={handleChange} value={search} placeholder="Search Purplegram" className={style.search}/>
                             {showSearch && 
                             <div className={style.searchList}>
                                 <UserSearch search={search}/>

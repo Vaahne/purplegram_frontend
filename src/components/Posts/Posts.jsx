@@ -29,7 +29,7 @@ export default function Posts(){
     return <FaSpinner className={styles.spinner}/>
   }
   function loaded(){
-    return posts.map(post=>{
+    return posts && posts.map(post=>{
             const user = post.userId;
             return (
               <>

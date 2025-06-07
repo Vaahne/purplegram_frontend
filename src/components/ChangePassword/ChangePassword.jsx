@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './ChangePassword.module.css';
-import axios from 'axios';
 import { useAuth } from '../../context/authContext/auth';
+import apiRequest from '../../apiService/apiServiceCall';
 
 // export default function ChangePassword({setIsOpen}){
 export default function ChangePassword(){
@@ -12,7 +12,6 @@ export default function ChangePassword(){
         confirmPassword:''
     })
     const {cookies} = useAuth();
-    const baseURL = import.meta.env.VITE_baseURL;
 
     function handleChange(e){
         setFormData({...formData,[e.target.name]:e.target.value})
@@ -28,10 +27,10 @@ export default function ChangePassword(){
             return alert('Old and new passwords cannot be same');
         if(formData.newPassword !== formData.confirmPassword)
             return alert('New password and confirm password should match');
-        let res = await axios.put(`${baseURL}/users/changepwd`,formData,{
-            headers:{'x-auth-token':cookies.token}
-        });
-        alert(res.data);
+
+        let res = apiRequest('users/changepwd',"PUT",formData,cookies.token);
+
+        alert(res);
     }
 
     return <form onSubmit={handleSubmit} className={styles.form}>

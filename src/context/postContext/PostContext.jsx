@@ -1,6 +1,7 @@
 import { createContext,useContext, useEffect, useState } from "react";
 import { useAuth } from "../authContext/auth";
 import axios from "axios";
+import apiRequest from "../../apiService/apiServiceCall";
 
 const PostContext = createContext();
 const baseURL = import.meta.env.VITE_baseURL;
@@ -13,10 +14,11 @@ export default function PostProvider({children}){
     useEffect(()=>{
         try {
             const getPosts = async ()=>{
-                const res = await axios(`${baseURL}/posts/getPosts`,{
-                                headers: {'x-auth-token':cookies.token}
-                            });
-                setPosts(res.data);
+                const resData = await apiRequest('posts/getPosts',"GET",{},cookies.token);
+                // const res = await axios(`${baseURL}/posts/getPosts`,{
+                //                 headers: {'x-auth-token':cookies.token}
+                //             });
+                setPosts(resData);
             };
                       
             if(cookies.token)

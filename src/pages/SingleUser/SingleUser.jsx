@@ -4,6 +4,7 @@ import styles from './SingleUser.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/authContext/auth';
+import apiRequest from '../../apiService/apiServiceCall';
 
 export default function SingleUser(){
     // const {fetchUser,searchedUser} = userInfo();
@@ -17,10 +18,11 @@ export default function SingleUser(){
 
          async function fetchUser(){
             try {
-                const user = await axios(`${baseURL}/users/${userId}`,{
-                        headers:{'x-auth-token': cookies.token}
-                        });
-                setSearchedUser(user.data);
+                const userData = await apiRequest(`users/${userId}`,"GET",{},cookies.token);
+                // const user = await axios(`${baseURL}/users/${userId}`,{
+                //         headers:{'x-auth-token': cookies.token}
+                //         });
+                setSearchedUser(userData);
             } catch (err) {
                 console.error(err.message);
             }
@@ -31,19 +33,20 @@ export default function SingleUser(){
  
     async function handleClick(e){
         try {
-            const res = await axios.post(`${baseURL}/friendreq/${userId}`,{},{
-                        headers:{'x-auth-token':cookies.token}
-                        });
-            console.log(res.data);
+            const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token);
+            // const res = await axios.post(`${baseURL}/friendreq/${userId}`,{},{
+            //             headers:{'x-auth-token':cookies.token}
+            //             });
+            console.log(resData);
         } catch (err) {
             console.error(err.message);
         }
     }
-
+    console.log(searchedUser);
     return <div>
         {searchedUser &&  <div>{searchedUser.name}
-                <img src="" alt={searchedUser.name}/>
-                <button onClick={handleClick}>Connect</button>
+                <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
+                {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
             </div> }
     </div>
 }

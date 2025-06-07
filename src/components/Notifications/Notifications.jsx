@@ -14,8 +14,9 @@ export default function Notifications(){
 
     function loaded(){
         return (
-            notifications.map(notification =>{
+            notifications && notifications.map(notification =>{
             return <li key={notification.post_id} className={styles.notification}>
+                    <img className={styles.img} src={notification.fromUserId.photo} alt={notification.fromUserId.name}/>
                     <span>{notification.fromUserId.name} {" "}</span>
                     {notification.notification_type == 'post' ? "posted on their timeline" : notification.notification_type+"ed on your post"}
             </li>

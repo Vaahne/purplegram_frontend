@@ -28,11 +28,12 @@ export default function CreateUser(){
         e.preventDefault();
         if(formData.password !== formData.password2)
             return alert('Passwords should match!!');
-        if(formData.password.length < 7)
+        if(formData.password.length < 8)
             return alert('Password should be atleast 6 characters');
         if(!formData.name || !formData.email || !formData.password || !formData.photo || !formData.dob )
             return alert('Please fill all the details!!');
         signUp(formData);
+        nav('/');
         alert('success');
     }
     return <>
@@ -47,7 +48,7 @@ export default function CreateUser(){
                 <input type="radio" value="male" name="gender" onChange={handleChange} required />Male
                 <input type="radio" value="female" name="gender" onChange={handleChange}/>Female
             </label>
-            <input type="file" name="photo" placeholder="Profile photo" onChange={handleChange} />
+            <input type="text" name="photo" placeholder="Enter image url" onChange={handleChange} />
             <input type="date" name="dob" placeholder="Date of birth" onChange={handleChange} required value={formData.dob}/>
             <input type="submit" value="Create user"/>
             <p>Already have an account? <span><Link to='/'>Login</Link></span></p>

@@ -1,0 +1,17 @@
+.img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.friendReqContainer{
+    width: 20rem;
+    margin: 0 auto;
+     list-style-type: none;
+    background-color: rgb(111, 131, 210);
+    border-radius: 2rem;
+}
+.li{
+    display: flex;
+    justify-content: space-around;
+    padding: .3rem;
+}

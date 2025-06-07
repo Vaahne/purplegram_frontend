@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import { Routes,Route } from 'react-router-dom';
 import Notifications from './components/Notifications/Notifications';
-import FriendRequest from './pages/FriendRequests';
+import FriendRequest from './components/FriendRequest/FriendRequest';
 // import dataContext from './context/dataContext.jsx';
 // import Home from './pages/HomePage';
 // import data from './utilities/data.mjs';

@@ -44,4 +44,3 @@
 + create very basic react page components for each page want to create
 + create routing for pages in app.jsx
 + create a super simple nav to navigate
-

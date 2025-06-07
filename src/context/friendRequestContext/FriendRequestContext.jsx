@@ -26,6 +26,8 @@ export default function FriendRequestProvider({children}){
 
     },[cookies.token]);
 
+   
+
     const value={
         friendRequest,
         setFriendRequest

@@ -1,6 +1,7 @@
 import { createContext,useContext,useMemo } from "react";
 import {useCookies} from 'react-cookie';
 import axios from "axios";
+import apiRequest from "../../apiService/apiServiceCall";
 
 const AuthContext = createContext();
 
@@ -18,15 +19,17 @@ export default function AuthProvider({children}){
         data.append('photo',formData.photo);
 
         console.log('formData : ',formData);
-        const res = await axios.post(`${baseURL}/users/register`,data,{
-                        headers:{}
-                    });
-        setCookie('token',res.data.token);
+        const resData = await apiRequest('users/register',"POST",formData);
+        // const res = await axios.post(`${baseURL}/users/register`,data,{
+        //                 headers:{}
+        //             });
+        setCookie('token',resData.token);
     }
 
     async function login(formData){
-        const res = await axios.post(`${baseURL}/users/auth`,formData);
-        setCookie('token',res.data.token);
+        // const res = await axios.post(`${baseURL}/users/auth`,formData);
+        const resData = await apiRequest('users/auth',"POST",formData);
+        setCookie('token',resData.token);
     }    
 
     function logout(){
