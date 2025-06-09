@@ -4,11 +4,13 @@ import styles from './FriendRequest.module.css';
 import { FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
+import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 export default function FriendRequest(){
     const {friendRequest:initialFriendRequests } = friendRequestInfo();
     const {cookies} = useAuth();
     
+    const {showError} = useError();
     const[friendRequests,setFriendRequest] = useState(initialFriendRequests);
 
     function loading(){
@@ -22,7 +24,7 @@ export default function FriendRequest(){
                    else
                        status = 'Rejected';
 
-                   const resData = await apiRequest(`friendreq/${userId}`,"PUT",{status},cookies.token);
+                   const resData = await apiRequest(`friendreq/${userId}`,"PUT",{status},cookies.token,showError);
                 
                    console.log(resData);
                } catch (err) {

@@ -1,32 +1,30 @@
 import { createContext,useContext, useEffect, useState } from "react";
 import { useAuth } from "../authContext/auth";
-import axios from "axios";
+import apiRequest from "../../apiService/apiServiceCall";
+import { useError } from "../errorHandlingContext/ErrorContext";
 
 const FriendRequestContext = createContext();
-const baseURL = import.meta.env.VITE_baseURL;
 
 export default function FriendRequestProvider({children}){
     const[friendRequest,setFriendRequest] = useState([]);
-   
+
+    const {showError} = useError();
     const {cookies} = useAuth();
 
     useEffect(()=>{
             const getFriendRequests = async ()=>{
                 try {
-                        const res = await axios(`${baseURL}/friendreq`,{
-                                        headers: {'x-auth-token':cookies.token}
-                                    });
-                        setFriendRequest(res.data);
+
+                        const resData = await apiRequest(`friendreq`,'GET',{},cookies.token,showError);
+                        setFriendRequest(resData);
                     } catch (err) {
-                    console.error(err.message);
+                        console.error(err.message);
                     }          
             }                            
             if(cookies.token)
                 getFriendRequests();
 
     },[cookies.token]);
-
-   
 
     const value={
         friendRequest,

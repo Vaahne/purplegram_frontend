@@ -2,11 +2,15 @@ import { useEffect,useState } from "react";
 import { useAuth } from "../../context/authContext/auth"
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../apiService/apiServiceCall";
+import styles from './UserSearch.module.css';
+import { useError } from "../../context/errorHandlingContext/ErrorContext";
 
 export default function UserSearch({search}){
     const {cookies} = useAuth();
+    const {showError} = useError();
     const [result,setResult] = useState([]);
     const[loading,setLoading] = useState(false);
+    const [showSearch,setShowSearch] = useState(true)
     const nav = useNavigate();
 
     useEffect(()=>{
@@ -19,7 +23,7 @@ export default function UserSearch({search}){
         const delayDebounce = setTimeout(()=>{
             const getUsers = async()=>{
             try {
-                const resData = await apiRequest('users/search',"POST",{search},cookies.token);
+                const resData = await apiRequest('users/search',"POST",{search},cookies.token,showError);
                 setResult(resData);
             } catch (err) {
                 console.error(err.message);
@@ -38,18 +42,20 @@ export default function UserSearch({search}){
             return <div>{r.name}</div>
         })
     }
+ 
     function loadingData(){
         return <p>{search}</p>;
-    }
-    function handleClick(id){
-        nav(`/singleuser/${id}`);
+    }  
+ 
+    function handleClick(userId){
+        setShowSearch(false);
+        nav(`/singleuser/${userId}`);
     }
 
-    // return result ? loaded() : loadingData()
-    return (
-        <div>
-            {loading ? (<p>Searching...</p>) : 
-            result ? (result.map(r=> <div key={r._id} onClick={()=>handleClick(r._id)}>{r.name}</div>)): <div>No Data found</div>} 
+    return   (
+        <div className={styles.searchContainer}>
+            {loading ? (<p >Searching...</p>) : 
+            (result.length > 0) ? (showSearch && result.map(r=> <div key={r._id} onClick={()=>handleClick(r._id)}>{r.name}</div>)): <div>No Data found</div>} 
         </div>
     )
 }

@@ -22,9 +22,6 @@ export default function Posts(){
       setPosts(prev => prev.filter((post)=>post.postId!=postId));
   }
 
-  // const posts = data.Posts;
-  // const users = data.userInfo;
-
   function loading(){
     return <FaSpinner className={styles.spinner}/>
   }

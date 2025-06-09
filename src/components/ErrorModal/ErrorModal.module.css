@@ -1,0 +1,9 @@
+.modalContainer{
+    margin: 12rem;
+    padding: 1rem;
+    text-align: center;
+
+     /* marginRight: '-50%'; */
+     transform: 'translate(-50%, -50%)';
+     width: '300px';
+}

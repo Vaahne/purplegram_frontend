@@ -2,15 +2,19 @@ import { useParams } from 'react-router-dom';
 import styles from './SingleUser.module.css';
 // import { userInfo } from '../../context/userContext/UserContext';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useAuth } from '../../context/authContext/auth';
+import PostHeader from '../../components/postHeader/PostHeader';
+import PostBody from '../../components/PostBody/PostBody';
+import Comments from '../../components/Comments/Comments';
+import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import apiRequest from '../../apiService/apiServiceCall';
+
 
 export default function SingleUser(){
     // const {fetchUser,searchedUser} = userInfo();
     const[searchedUser,setSearchedUser] = useState();
-    const baseURL = import.meta.env.VITE_baseURL;
     const {cookies} = useAuth();
+    const {showError} = useError();
 
     const {userId} = useParams();
 
@@ -18,10 +22,7 @@ export default function SingleUser(){
 
          async function fetchUser(){
             try {
-                const userData = await apiRequest(`users/${userId}`,"GET",{},cookies.token);
-                // const user = await axios(`${baseURL}/users/${userId}`,{
-                //         headers:{'x-auth-token': cookies.token}
-                //         });
+                const userData = await apiRequest(`users/${userId}`,"GET",{},cookies.token,showError);
                 setSearchedUser(userData);
             } catch (err) {
                 console.error(err.message);
@@ -33,10 +34,7 @@ export default function SingleUser(){
  
     async function handleClick(e){
         try {
-            const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token);
-            // const res = await axios.post(`${baseURL}/friendreq/${userId}`,{},{
-            //             headers:{'x-auth-token':cookies.token}
-            //             });
+            const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token,showError);
             console.log(resData);
         } catch (err) {
             console.error(err.message);
@@ -47,6 +45,28 @@ export default function SingleUser(){
         {searchedUser &&  <div>{searchedUser.name}
                 <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
                 {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
+                
+                {searchedUser.posts.map(post => {
+                    const user = post.userId;
+                    return (
+                    <>
+                        <div key={post._id} className={styles.postContainer}>
+                        <PostHeader  name={user.name} photo={searchedUser.photo} onClose={()=>handleRemove(post.postId)}/>
+                         <div className={styles.postContent}>
+                            <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
+                        </div>
+                        <div className={styles.commentSection}>
+                            <p>{post.likes.length>0 ? post.likes.length + 'likes' : ''}  </p>
+                            <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
+                        </div>
+                        <hr/>
+                        <Comments postId={post._id}/>
+                        </div>
+                    </>
+                    )
+                    }
+                )}
+                
             </div> }
     </div>
 }

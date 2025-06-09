@@ -17,6 +17,7 @@ import Settings from './pages/Settings/Settings';
 import Modal from 'react-modal';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import SingleUser from './pages/SingleUser/SingleUser';
+import ErrorModal from './components/ErrorModal/ErrorModal';
 
   function App() {
     Modal.setAppElement('#root');
@@ -46,7 +47,8 @@ import SingleUser from './pages/SingleUser/SingleUser';
                 </main> */}
             </Route>
             {/* </dataContext.Provider> */}
-        </Routes>        
+        </Routes>    
+        <ErrorModal/>    
       </>
     )
   }

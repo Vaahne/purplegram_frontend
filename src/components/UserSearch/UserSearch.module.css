@@ -1,0 +1,10 @@
+.searchContainer{
+    background-color: rgb(130, 163, 191);
+    color: blue;
+    border-radius: 1rem;
+}
+.searchContainer > div:hover{
+    cursor: pointer;
+    background-color: rgb(118, 139, 139);
+    border-radius: 1rem;
+}

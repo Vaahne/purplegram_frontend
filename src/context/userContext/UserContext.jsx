@@ -1,20 +1,20 @@
 import { createContext,useContext, useEffect, useState } from "react";
 import { useAuth } from "../authContext/auth";
-import axios from "axios";
 import apiRequest from "../../apiService/apiServiceCall";
+import { useError } from "../errorHandlingContext/ErrorContext";
 
 const UserContext = createContext();
-const baseURL = import.meta.env.VITE_baseURL;
 
 export default function UserProvider({children}){
     const[user,setUser] = useState([]);
     // const[searchedUser,setSearchedUser] = useState(null);
+    const {showError} = useError();
     const {cookies} = useAuth();
 
     useEffect(()=>{
         try {
             const getUser = async ()=>{
-                const resData = await apiRequest('users/singleuser',"GET",{},cookies.token);
+                const resData = await apiRequest('users/singleuser',"GET",{},cookies.token,showError);
                 // const res = await axios(`${baseURL}/users/singleuser`,{
                 //                 headers: {'x-auth-token':cookies.token}
                 //             });

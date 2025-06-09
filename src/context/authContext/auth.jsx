@@ -1,13 +1,13 @@
 import { createContext,useContext,useMemo } from "react";
 import {useCookies} from 'react-cookie';
-import axios from "axios";
 import apiRequest from "../../apiService/apiServiceCall";
+import { useError } from "../errorHandlingContext/ErrorContext";
 
 const AuthContext = createContext();
 
 export default function AuthProvider({children}){
+    const {showError} = useError();
     const[cookies,setCookie,removeCookie] = useCookies();
-    const baseURL = import.meta.env.VITE_baseURL;
 
     async function signUp(formData){
         const data = new FormData();
@@ -19,16 +19,14 @@ export default function AuthProvider({children}){
         data.append('photo',formData.photo);
 
         console.log('formData : ',formData);
-        const resData = await apiRequest('users/register',"POST",formData);
-        // const res = await axios.post(`${baseURL}/users/register`,data,{
-        //                 headers:{}
-        //             });
+        const resData = await apiRequest('users/register',"POST",formData,null,showError);
+        
         setCookie('token',resData.token);
     }
 
     async function login(formData){
         // const res = await axios.post(`${baseURL}/users/auth`,formData);
-        const resData = await apiRequest('users/auth',"POST",formData);
+        const resData = await apiRequest('users/auth',"POST",formData,null,showError);
         setCookie('token',resData.token);
     }    
 

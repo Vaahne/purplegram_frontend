@@ -45,12 +45,7 @@ export default function LandingPage(){
             <input type="email" placeholder="Email" name="email" onChange={handleChange} value={formData.email}/>
             <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
             <input type="submit" value='Login' className={styles.login}/>
-            {/* <div style={{display:flex}}>
-                <hr/>
-                <p>or</p>
-                <hr/>
-            </div> */}
-            {/* <Link to="/">Forgot password?</Link> */}
+           
             <p>Don't have an account?</p>
             <Link to="/createuser"><button className={styles.signup}>Sign up</button></Link>
         </form> 

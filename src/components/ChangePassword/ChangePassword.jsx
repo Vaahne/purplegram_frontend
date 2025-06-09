@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './ChangePassword.module.css';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
+import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 // export default function ChangePassword({setIsOpen}){
 export default function ChangePassword(){
@@ -10,7 +11,9 @@ export default function ChangePassword(){
         oldPassword:'',
         newPassword:'',
         confirmPassword:''
-    })
+    });
+
+    const {showError} = useError();
     const {cookies} = useAuth();
 
     function handleChange(e){
@@ -28,9 +31,9 @@ export default function ChangePassword(){
         if(formData.newPassword !== formData.confirmPassword)
             return alert('New password and confirm password should match');
 
-        let res = apiRequest('users/changepwd',"PUT",formData,cookies.token);
+        let res = await apiRequest('users/changepwd',"PUT",formData,cookies.token,showError);
 
-        alert(res);
+        console.log('res from change paswd',res);
     }
 
     return <form onSubmit={handleSubmit} className={styles.form}>

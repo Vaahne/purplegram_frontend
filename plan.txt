@@ -15,5 +15,16 @@ todo ?
     while doing change password: add a check to make sure both old and new password dont match. done
 
     search purplegram for users - done
-    friend request - 
+    friend request - done 
+Todo 
+    search disappear the drop down after click -  done
+
     comments - 
+    likes - 
+    update without refresh - 
+    error messages for all other than 200,201 -
+    styling - 
+
+------
+    s3 bucket images
+    socket io -

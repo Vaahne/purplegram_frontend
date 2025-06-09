@@ -1,17 +1,22 @@
+import { useEffect,useState } from 'react';
+import apiRequest from '../../apiService/apiServiceCall';
 import { useAuth } from '../../context/authContext/auth';
 import styles from './Comments.module.css';
-import axios from 'axios';
+import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 export default function Comments({postId}){
     const{cookies} = useAuth();
-    const baseURL = import.meta.env.VITE_baseURL;
+    const {showError} = useError();
+    const[comments,setComments] = useState([]);
+    const[newComment,setNewComment] = useState('');
+
+    useEffect(()=>{
+
+    },[postId]);
 
     async function handleClick(e){
         if(e.target.name=='likes'){
-            await axios.put(`${baseURL}/posts/${postId}`,{},{
-                headers:{'x-auth-token':cookies.token}
-            });
-            alert('Like status updated!!');
+            apiRequest(`posts/${postId}`,"PUT",{},cookies.token);
         }else{
             
         }
