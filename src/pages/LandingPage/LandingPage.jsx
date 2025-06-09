@@ -15,8 +15,6 @@ export default function LandingPage(){
             nav('/posts');
     },[cookies]);
 
-
-
     const[formData,setFormData] = useState({
         email: '',
         password: ''
@@ -25,14 +23,17 @@ export default function LandingPage(){
     function handleChange(e){
         setFormData({...formData,[e.target.name]:e.target.value});
     }
+
     async function handleSubmit(e){
         e.preventDefault();
         await login(formData);
         nav('/posts');
     }
+
     function redirect(){
         nav('/posts');
     }
+    
     return <> 
         <div className={styles.container}>
         <div className={styles.textContainer}>

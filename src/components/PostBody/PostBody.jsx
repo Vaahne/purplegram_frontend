@@ -8,8 +8,6 @@ export default function PostBody({postType,text,photo}){
     // const[image,setImage] = useState('');
     const[isOpen,setIsOpen] = useState(false);
 
-   
-
     function handleClick(){
         setIsOpen(true);
     }

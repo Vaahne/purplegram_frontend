@@ -4,7 +4,6 @@ import PostHeader from "../postHeader/PostHeader.jsx";
 import styles from './Posts.module.css';
 import Comments from "../Comments/Comments.jsx";
 import { postsInfo } from "../../context/postContext/PostContext.jsx";
-import commentReducer from "../../reducer/commentReducer.jsx";
 import { FaSpinner } from "react-icons/fa";
 import PostBody from "../PostBody/PostBody.jsx";
 
@@ -27,6 +26,7 @@ export default function Posts(){
   }
   function loaded(){
     return posts && posts.map(post=>{
+            // console.log('Each Post : ',post);
             const user = post.userId;
             return (
               <>
@@ -40,7 +40,7 @@ export default function Posts(){
                     <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
                   </div>
                   <hr/>
-                  <Comments postId={post._id}/>
+                  <Comments  post={post}/>
               </div>
               </>
               )

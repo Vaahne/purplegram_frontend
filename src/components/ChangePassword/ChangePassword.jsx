@@ -5,7 +5,7 @@ import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 // export default function ChangePassword({setIsOpen}){
-export default function ChangePassword(){
+export default function ChangePassword({setIsOpen}){
 
     const[formData,setFormData] = useState({
         oldPassword:'',
@@ -36,11 +36,14 @@ export default function ChangePassword(){
         console.log('res from change paswd',res);
     }
 
-    return <form onSubmit={handleSubmit} className={styles.form}>
+    return <>
+        <h3>Change Password</h3>
+        <form onSubmit={handleSubmit} className={styles.form}>
         <input type="password" placeholder='Enter old password' onChange={handleChange} name="oldPassword" value={formData.oldPassword}/>
         <input type="password" placeholder='Enter new password' onChange={handleChange} name="newPassword" value={formData.newPassword}/>
         <input type="password" placeholder='Confirm new password' onChange={handleChange} name="confirmPassword" value={formData.confirmPassword}/>
         <input type="submit" value='Change Password'/>
-        <input type="button" value='cancle' />
+        {/* <input type="button" value='cancle' onClick={()=>setIsOpen(false)} /> */}
     </form>
+    </>
 }

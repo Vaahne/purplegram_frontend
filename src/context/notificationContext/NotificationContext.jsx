@@ -17,10 +17,7 @@ export default function NotificationProvider({children}){
         try {
             const getNotifications = async ()=>{
                 const resData = await apiRequest(`notification`,'GET',{},cookies.token,showError);
-                // const res = await axios(`${baseURL}/notification`,{
-                //                 headers: {'x-auth-token':cookies.token}
-                //             });
-                setNotifications(res.data);
+                setNotifications(resData);
             };
                       
             if(cookies.token)

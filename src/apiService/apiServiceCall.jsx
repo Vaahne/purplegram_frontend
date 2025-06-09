@@ -9,7 +9,7 @@ export default async function apiRequest(url,method="GET",data={},token=null,sho
     try {
          const headers = token ? {'x-auth-token':token} : {};
         //  console.log(token)
-
+        // console.log(`BaseURL:  ${baseURL}/${url}`);
          const response = await axios({
                         method,
                         url:`${baseURL}/${url}`,

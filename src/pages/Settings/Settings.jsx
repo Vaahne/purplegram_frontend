@@ -3,6 +3,7 @@ import styles from './Settings.module.css';
 import { Link } from 'react-router-dom';
 import ChangePassword from '../../components/ChangePassword/ChangePassword';
 import { useState } from 'react';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
 
 export default function Settings(){
     const[isOpen,setIsOpen] = useState(false);
@@ -16,11 +17,15 @@ export default function Settings(){
             <div onClick={handleClick} >Change Password</div>
             <Link to='/' >Update Details</Link>
         </div>
-    
-       <Modal className={styles.modalStyle} isOpen={isOpen}  onRequestClose={()=>setIsOpen(false)}>
-                    <ChangePassword />
-                    {/* setIsOpen={setIsOpen} */}
-                    <button onClick={()=>setIsOpen(false)} className={styles.closeBtn}>Close</button>
-        </Modal>
+
+        <ModalComponent isOpen={isOpen} onClose={()=>setIsOpen(false)}>
+                <ChangePassword setIsOpen={setIsOpen}/>
+        </ModalComponent>
+
+       {/* <Modal className={styles.modalStyle} isOpen={isOpen}  onRequestClose={()=>setIsOpen(false)}>
+            <div>
+                    <ChangePassword setIsOpen={setIsOpen}/>
+            </div>
+        </Modal> */}
     </>    
 }

@@ -7,9 +7,11 @@ import { useAuth } from "../../context/authContext/auth";
 import LandingPage from "../../pages/LandingPage/LandingPage";
 import Notifications from "../Notifications/Notifications";
 import UserSearch from "../UserSearch/UserSearch";
+import Modal from 'react-modal';
 
 export default function NavBar(){
     const[search,setSearch] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false); 
     const nav = useNavigate();
     const {cookies,logout} = useAuth();
     const [showSearch,setShowSearch] = useState(false);
@@ -21,8 +23,13 @@ export default function NavBar(){
     }
 
     function handleLogout(){
+        setIsModalOpen(true);
+    }
+
+    function confirmLogout(){
         logout();
         nav('/');
+        setIsModalOpen(false);
     }
 
     return (cookies.token ? 
@@ -51,6 +58,15 @@ export default function NavBar(){
                 <li><Link to="/friendrequest" title="Friend Request"><FaUserFriends className={style.navItem}/> </Link></li>
                 <li><Link title="logout"><FaSignOutAlt className={style.navItem} onClick={handleLogout} /></Link></li>
             </ul>
+            <Modal  isOpen={isModalOpen} 
+                onRequestClose={() => setIsModalOpen(false)} className={style.modalContainer}>
+                <div className={style.modalContent}>
+                    <p>Are you sure you want to logout?</p>
+                    <button onClick={confirmLogout} className={style.confirmButton}>Yes</button>
+                    <button onClick={() => setIsModalOpen(false)} className={style.cancelButton}>No</button>
+                </div>
+            </Modal>
+
         </nav> : 
         <LandingPage/>)
 }

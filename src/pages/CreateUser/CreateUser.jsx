@@ -37,6 +37,11 @@ export default function CreateUser(){
         alert('success');
     }
     return <>
+        <div className={styles.container}>
+         <div className={styles.textContainer}>
+            <h1 className={styles.name}>Purplegram</h1>
+            <p className={styles.caption}>Connecting people to share memories on Purplegram</p>
+         </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
             <h3>Register User</h3>
             <input type="text" name="name" placeholder="Name" onChange={handleChange} required value={formData.name}/>
@@ -53,5 +58,6 @@ export default function CreateUser(){
             <input type="submit" value="Create user"/>
             <p>Already have an account? <span><Link to='/'>Login</Link></span></p>
         </form>
+        </div>
     </>
 }
