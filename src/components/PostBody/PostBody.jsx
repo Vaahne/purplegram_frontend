@@ -20,7 +20,7 @@ export default function PostBody({postType,text,photo}){
 
     function withImage(){
         return <div className={styles.postBody} onClick={handleClick}>
-            <p>{text && text}</p>
+            <p className={styles.text}>{text && text}</p>
             <img src={photo} alt={text}></img>
         </div>
     }

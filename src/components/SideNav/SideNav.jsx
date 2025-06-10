@@ -21,7 +21,7 @@ export default function SideNav(){
          <nav className={`${styles.sideNav} ${isOpen ? styles.open : styles.closed}`}>
             <ul>
                 <li> <img src={user.photo} alt={user.name} className={styles.profilePic}/> <p>{user.name}</p>   </li>
-                <li><Link to="/friendrequest" title="Friend Request"><FaUserFriends className={styles.navItem}/></Link></li>
+                <li><Link to="/friendrequest" title="Friends"><FaUserFriends className={styles.navItem}/></Link></li>
                 <li><Link to="/createpost" title="Create Post"><FaPlus className={styles.navItem}/></Link></li>
                 <li><Link to="/settings" title="Settings"><FaCog className={styles.navItem}/></Link></li>
             </ul>

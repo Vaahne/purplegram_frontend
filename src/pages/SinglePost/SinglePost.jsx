@@ -8,9 +8,11 @@ import { useAuth } from '../../context/authContext/auth';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { useNavigate } from 'react-router-dom';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
+import { userInfo } from '../../context/userContext/UserContext';
 
 export default function SinglePost(){
 
+    const {user} = userInfo();
     const[comment,setComment] = useState('');
     const location = useLocation();
     const nav = useNavigate();
@@ -42,12 +44,30 @@ export default function SinglePost(){
             handleAddComment(e);
     }
 
-    const user = post.userId;
+    async function handleDeleteComment(id){
+        await apiRequest(`comments/${id}`,"DELETE",{},cookies.token,showError);
+        alert('Comment Deleted');
+    }
+
+    async function handleEditComment(commentId, oldText) {
+        const newText = prompt("Edit your comment:", oldText);
+        if (!newText) return;
+
+        try {
+            await apiRequest(`comments/${commentId}`, "PUT", { comment: newText }, cookies.token, showError);
+            alert('updated successfully!!!');
+        } catch (err) {
+            console.error("Failed to update comment:", err);
+        }
+    }
+
+    const userPost = post.userId;
+    console.log(user.name,': name \n photo:',user);  // todo
 
     return <>
         <ModalComponent isOpen={isOpen} onClose={handleClose}>
             <div key={post._id} className={styles.postContainer}>
-                <PostHeader  name={user.name} photo={user.photo} onClose={()=>handleRemove(post.postId)}/>
+                <PostHeader  name={userPost.name} photo={userPost.photo} onClose={()=>handleRemove(post.postId)}/>
                 <div className={styles.postContent}>
                 <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
             </div>
@@ -60,14 +80,26 @@ export default function SinglePost(){
             <p>No comments yet.</p>
                 ) : (
                 commentsData.comments.map((c) => (
-                    <div key={c._id} className={styles.comment}>
-                        <strong>{c.user_id?.name || 'Anonymous'}:</strong> {c.comment_text}
+                   
+                   
+                   <div key={c._id} className={styles.comment}>
+                        <strong>{c.user_id?.name || 'Anonymous'}:</strong> 
+                        <div>{c.comment_text}</div>
+
+                       {user && c.user_id?._id === user._id && (
+                        <div className={styles.commentActions}>
+                            <button onClick={() => handleEditComment(c._id, c.comment_text)}>Edit</button>
+                            <button onClick={() => handleDeleteComment(c._id)}>Delete</button>
+                        </div>
+                        )}
+
                     </div>
-                ))
+
+                    
+            ))
             )}
             <div>
                     <input type="text" name="comment" placeholder='Add Comment' onChange={handleChange}  onKeyDown={handleKeyDown} value={comment}/>
-                    {/* <button onClick={handleAddComment}>Add Comment</button> */}
             </div>
         </div> 
     </ModalComponent>

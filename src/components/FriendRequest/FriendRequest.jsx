@@ -1,5 +1,5 @@
 import { friendRequestInfo } from '../../context/friendRequestContext/FriendRequestContext';
-import { useState } from 'react';
+import {  useState } from 'react';
 import styles from './FriendRequest.module.css';
 import { FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext/auth';
@@ -40,7 +40,7 @@ export default function FriendRequest(){
    
        function loaded(){
            return (
-            friendRequests &&   friendRequests.map(friendRequest =>{
+            friendRequests.length > 0 &&   friendRequests.map(friendRequest =>{
                 const sender = friendRequest.sender_id;
                return <li key={sender._id} className={styles.li} >
                     <img src={sender.photo} alt={sender.name} className={styles.img}/>

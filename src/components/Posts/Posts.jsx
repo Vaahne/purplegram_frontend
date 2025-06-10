@@ -26,7 +26,6 @@ export default function Posts(){
   }
   function loaded(){
     return posts && posts.map(post=>{
-            // console.log('Each Post : ',post);
             const user = post.userId;
             return (
               <>

@@ -42,7 +42,8 @@ export default function SingleUser(){
     }
     console.log(searchedUser);
     return <div>
-        {searchedUser &&  <div>{searchedUser.name}
+        {searchedUser &&  <div>
+                <div>{searchedUser.name}</div>
                 <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
                 {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
                 
@@ -51,7 +52,7 @@ export default function SingleUser(){
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>
-                        <PostHeader  name={user.name} photo={searchedUser.photo} onClose={()=>handleRemove(post.postId)}/>
+                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post.postId)}/>
                          <div className={styles.postContent}>
                             <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                         </div>
@@ -60,7 +61,7 @@ export default function SingleUser(){
                             <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
                         </div>
                         <hr/>
-                        <Comments postId={post._id}/>
+                        <Comments post={{...post,userId:{name:searchedUser.name, photo:searchedUser.photo}}}/>
                         </div>
                     </>
                     )

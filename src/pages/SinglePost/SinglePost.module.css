@@ -59,3 +59,12 @@ button {
 button:hover {
   background-color: #5952d4;
 }
+.comment{
+  display: flex;
+  gap: 2rem;
+  /* justify-content: space-around; */
+}
+.commentActions{
+  display: flex;
+  justify-content: space-between;
+}

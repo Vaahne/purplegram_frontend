@@ -1,7 +1,11 @@
 .profilePic{
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: 4rem;
+    width: 4rem;
+}
+.name{
+    font-size: x-large;
+    font-weight: bolder;
 }
 .postHeader{
     display: flex;

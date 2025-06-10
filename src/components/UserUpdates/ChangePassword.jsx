@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import styles from './ChangePassword.module.css';
+import styles from './UserUpdates.module.css';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 // export default function ChangePassword({setIsOpen}){
-export default function ChangePassword({setIsOpen}){
+export default function ChangePassword(){
 
     const[formData,setFormData] = useState({
         oldPassword:'',

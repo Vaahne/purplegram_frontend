@@ -15,9 +15,7 @@ export default function UserProvider({children}){
         try {
             const getUser = async ()=>{
                 const resData = await apiRequest('users/singleuser',"GET",{},cookies.token,showError);
-                // const res = await axios(`${baseURL}/users/singleuser`,{
-                //                 headers: {'x-auth-token':cookies.token}
-                //             });
+               
                 setUser(resData);
             };
                       
