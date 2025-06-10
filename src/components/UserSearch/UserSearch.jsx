@@ -5,7 +5,7 @@ import apiRequest from "../../apiService/apiServiceCall";
 import styles from './UserSearch.module.css';
 import { useError } from "../../context/errorHandlingContext/ErrorContext";
 
-export default function UserSearch({search}){
+export default function UserSearch({search,setSearch}){
     const {cookies} = useAuth();
     const {showError} = useError();
     const [result,setResult] = useState([]);

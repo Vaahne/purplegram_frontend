@@ -1,5 +1,4 @@
 import { friendRequestInfo } from '../../context/friendRequestContext/FriendRequestContext';
-import {  useState } from 'react';
 import styles from './FriendRequest.module.css';
 import { FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext/auth';
@@ -7,11 +6,11 @@ import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 export default function FriendRequest(){
-    const {friendRequest:initialFriendRequests } = friendRequestInfo();
+    // const {friendRequest:initialFriendRequests } = friendRequestInfo();
+    const {friendRequests} = friendRequestInfo();
     const {cookies} = useAuth();
     
     const {showError} = useError();
-    const[friendRequests,setFriendRequest] = useState(initialFriendRequests);
 
     function loading(){
            return <FaSpinner />
@@ -51,7 +50,7 @@ export default function FriendRequest(){
            })
         )
       }
-      return <>Friend Request
+      return <> <p clasName={styles.frnTitle}>Friend Request</p>
         {friendRequests ? (<ul className={styles.friendReqContainer}>{loaded()}</ul>) : loading()}
       </>
 }

@@ -13,10 +13,12 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import SingleUser from './pages/SingleUser/SingleUser';
 import ErrorModal from './components/ErrorModal/ErrorModal';
 import SinglePost from './pages/SinglePost/SinglePost';
+import useSocket from './context/socketContext/socketContext';
 
   function App() {
     Modal.setAppElement('#root');
-
+    useSocket();
+    
     return (
       <>
       <Routes>

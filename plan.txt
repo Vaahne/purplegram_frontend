@@ -18,13 +18,18 @@ todo ?
     friend request - done 
 Todo 
     search disappear the drop down after click -  done
+    comments - done
+    error messages for all other than 200,201 - done 
 
-    comments - 
     likes - 
     update without refresh - 
-    error messages for all other than 200,201 -
     styling - 
 
-------
+    friend request - size 
+    notifications - color 
+    after new posts - should come on posts page
+    hiding a particular post on click on x
+
+-----------
     s3 bucket images
     socket io -

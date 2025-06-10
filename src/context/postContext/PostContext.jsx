@@ -1,11 +1,9 @@
 import { createContext,useContext, useEffect, useState } from "react";
 import { useAuth } from "../authContext/auth";
-import axios from "axios";
 import apiRequest from "../../apiService/apiServiceCall";
 import { useError } from "../errorHandlingContext/ErrorContext";
 
 const PostContext = createContext();
-const baseURL = import.meta.env.VITE_baseURL;
 
 export default function PostProvider({children}){
     const[posts,setPosts] = useState([]);

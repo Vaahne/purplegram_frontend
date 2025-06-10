@@ -40,7 +40,6 @@ export default function CreateUser(){
         <div className={styles.container}>
          <div className={styles.textContainer}>
             <h1 className={styles.name}>Purplegram</h1>
-            <p className={styles.caption}>Connecting people to share memories on Purplegram</p>
          </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
             <h3>Register User</h3>

@@ -1,22 +1,17 @@
-import {  useEffect, useReducer ,useState } from "react";
+import socket from "../../socket.jsx";
 import PostHeader from "../postHeader/PostHeader.jsx";
-// import dataContext from "../../context/dataContext.jsx";
 import styles from './Posts.module.css';
 import Comments from "../Comments/Comments.jsx";
 import { postsInfo } from "../../context/postContext/PostContext.jsx";
 import { FaSpinner } from "react-icons/fa";
 import PostBody from "../PostBody/PostBody.jsx";
+import { useEffect } from "react";
 
 export default function Posts(){
-  // const [tasks,dispatch] = useReducer(commentReducer,null);
-  // takes the posts and renames to initialposts;
-  const {posts:initialPosts} = postsInfo();
-  const[posts,setPosts] = useState(initialPosts);
-
-  // useEffect(()=>{
-
-  // },[posts]);
-
+ 
+  const {posts,setPosts} = postsInfo();
+   
+  
   function handleRemove(postId){
       setPosts(prev => prev.filter((post)=>post.postId!=postId));
   }
@@ -25,7 +20,7 @@ export default function Posts(){
     return <FaSpinner className={styles.spinner}/>
   }
   function loaded(){
-    return posts && posts.map(post=>{
+    return posts.length>0 && posts.map(post=>{
             const user = post.userId;
             return (
               <>

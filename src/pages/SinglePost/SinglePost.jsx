@@ -1,3 +1,4 @@
+import socket from '../../socket';
 import PostHeader from '../../components/postHeader/PostHeader';
 import PostBody from '../../components/PostBody/PostBody';
 import styles from './SinglePost.module.css';
@@ -30,7 +31,9 @@ export default function SinglePost(){
 
     async function handleAddComment(e){
         e.preventDefault();
-        await apiRequest(`comments/${postId}`,'POST',{comment},cookies.token,showError);
+        const newComment = await apiRequest(`comments/${postId}`,'POST',{comment},cookies.token,showError);
+        // socket.emit("");
+        socket.emit("commentPost", { postId, comment: newComment._id });
         nav('/posts');
     }
 

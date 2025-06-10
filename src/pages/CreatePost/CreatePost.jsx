@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
+import { postsInfo } from '../../context/postContext/PostContext';
 
 export default function CreatePost(){
+    const {posts,setPosts} = postsInfo();
+
     const {showError} = useError();
     const nav = useNavigate();
     const {cookies} = useAuth();
@@ -32,20 +35,10 @@ export default function CreatePost(){
 
             if(formData.photo && formData.photo!= '')
                 formData.postType = 'photo';
-
-            // const data = new FormData();
             
-            // data.append('post_text',formData.post_text);
-            // data.append('photo',formData.photo);
-            // data.append('postType',formData.postType);
+            const newPost = await apiRequest('posts',"POST",formData,cookies.token,showError);
 
-            // await axios.post(`${baseURL}/posts`,formData,{
-            //     headers :{
-            //         'x-auth-token' : cookies.token
-            //     }
-            // });
-
-            await apiRequest('posts',"POST",formData,cookies.token,showError);
+            setPosts([newPost,...posts]);
 
             nav('/posts');
     }

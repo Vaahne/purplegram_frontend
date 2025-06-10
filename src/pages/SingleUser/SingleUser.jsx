@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import styles from './SingleUser.module.css';
-// import { userInfo } from '../../context/userContext/UserContext';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/authContext/auth';
 import PostHeader from '../../components/postHeader/PostHeader';
@@ -8,11 +7,17 @@ import PostBody from '../../components/PostBody/PostBody';
 import Comments from '../../components/Comments/Comments';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import apiRequest from '../../apiService/apiServiceCall';
+import socket from '../../socket';
+import { friendRequestInfo } from '../../context/friendRequestContext/FriendRequestContext';
+import { userInfo } from '../../context/userContext/UserContext';
 
 
 export default function SingleUser(){
     // const {fetchUser,searchedUser} = userInfo();
     const[searchedUser,setSearchedUser] = useState();
+    const {setFriendRequests} = friendRequestInfo();
+    const {user} = userInfo();
+
     const {cookies} = useAuth();
     const {showError} = useError();
 
@@ -35,6 +40,10 @@ export default function SingleUser(){
     async function handleClick(e){
         try {
             const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token,showError);
+            socket.emit("sendFriendRequest",{
+                toUserId: userId,
+                request: resData
+            });
             console.log(resData);
         } catch (err) {
             console.error(err.message);

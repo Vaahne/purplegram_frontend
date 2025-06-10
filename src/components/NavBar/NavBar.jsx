@@ -41,7 +41,7 @@ export default function NavBar(){
                             <input type="text" onChange={handleChange} value={search} placeholder="Search Purplegram" className={style.search}/>
                             {showSearch && 
                             <div className={style.searchList}>
-                                <UserSearch search={search}/>
+                                <UserSearch search={search} setSearch={setSearch}/>
                             </div>
                             }
                         </div>

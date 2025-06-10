@@ -7,7 +7,7 @@ import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function UpdateDetails(){
-    const {user} = userInfo();    
+    const {user,setUser} = userInfo();    
     const {cookies} = useAuth();
     const {showError} = useError();
     const nav = useNavigate();
@@ -28,6 +28,7 @@ export default function UpdateDetails(){
         if(!formData.name || !formData.email || !formData.photo || !formData.dob)
             return alert('Please fill all the feilds'); 
         await apiRequest('users','PUT',formData,cookies.token,showError);
+        setUser({...user,photo:formData.photo,name:formData.name});
         nav('/posts');
     }
 

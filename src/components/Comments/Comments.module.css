@@ -2,3 +2,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.liked {
+  color: rgb(86, 41, 230); /* or any color you prefer */
+  font-weight: bold;
+  background-color: #e6f5ff;
+  border: 1px solid rgb(101, 96, 96);
+}
+
+.unliked {
+  /* color: black;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc; */
+}

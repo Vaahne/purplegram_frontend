@@ -1,9 +1,16 @@
 .modalContainer{
-    margin: 12rem;
+    margin: 12rem auto;
     padding: 1rem;
     text-align: center;
-
+    background-color: rgb(193, 193, 152);
      /* marginRight: '-50%'; */
      transform: 'translate(-50%, -50%)';
-     width: '300px';
+     width: 27rem;
+     /* color: white; */
+     z-index: 999999;
+     border-radius: .9rem ;
+}
+.errorMessage{
+    font-size: larger;
+    font-weight: bolder;
 }

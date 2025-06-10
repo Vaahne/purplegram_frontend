@@ -6,7 +6,8 @@ import { useError } from "../errorHandlingContext/ErrorContext";
 const FriendRequestContext = createContext();
 
 export default function FriendRequestProvider({children}){
-    const[friendRequest,setFriendRequest] = useState([]);
+
+    const[friendRequests,setFriendRequests] = useState([]);
 
     const {showError} = useError();
     const {cookies} = useAuth();
@@ -16,7 +17,7 @@ export default function FriendRequestProvider({children}){
                 try {
 
                         const resData = await apiRequest(`friendreq`,'GET',{},cookies.token,showError);
-                        setFriendRequest(resData);
+                        setFriendRequests(resData);
                     } catch (err) {
                         console.error(err.message);
                     }          
@@ -27,8 +28,8 @@ export default function FriendRequestProvider({children}){
     },[cookies.token]);
 
     const value={
-        friendRequest,
-        setFriendRequest
+        friendRequests,
+        setFriendRequests
     }
     
     return <FriendRequestContext.Provider value={value}>{children}</FriendRequestContext.Provider>
