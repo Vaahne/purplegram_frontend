@@ -6,10 +6,10 @@ import { postsInfo } from "../../context/postContext/PostContext.jsx";
 import { FaSpinner } from "react-icons/fa";
 import PostBody from "../PostBody/PostBody.jsx";
 
-export default function Posts(){
- 
+// List of all user friends posts with image, name and post content
+export default function Posts(){ 
+  
   const {posts,setPosts} = postsInfo();
-   
   
   function handleRemove(postId){
       setPosts(prev => prev.filter((post)=>post._id !== postId));

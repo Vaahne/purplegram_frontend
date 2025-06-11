@@ -8,7 +8,7 @@ import { postsInfo } from "../../context/postContext/PostContext";
 import { useError } from "../../context/errorHandlingContext/ErrorContext";
 import { useAuth } from "../../context/authContext/auth";
 import apiRequest from "../../apiService/apiServiceCall";
-
+//  notifications if some one posts/likes/comments
 export default function Notifications(){
     const nav = useNavigate();
     const {notifications:initialNotifications} = notificationInfo();

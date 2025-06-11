@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import styles from './ErrorModal.module.css';
-
+//  This function is a modal that displays when error from the backend response
 export default function ErrorModal(){
     const{error, clearError} = useError();
 

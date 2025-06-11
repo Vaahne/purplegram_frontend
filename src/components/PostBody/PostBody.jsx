@@ -25,6 +25,7 @@ export default function PostBody({postType,text,photo}){
         </div>
     }
 
+    // this is post body with image or text 
     return <>
         <Modal className={styles.modalStyle} isOpen={isOpen}  onRequestClose={()=>setIsOpen(false)}>
                        <SinglePost/>

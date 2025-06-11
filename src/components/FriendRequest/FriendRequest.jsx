@@ -36,7 +36,7 @@ export default function FriendRequest(){
           updateFriendReq(e.target.name,status);
           console.log(e.target.name);
        }
-   
+       // shows the friend requests where a user can ignore or accept    
        function loaded(){
            return (
             friendRequests.length > 0 &&   friendRequests.map(friendRequest =>{

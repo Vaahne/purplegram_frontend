@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import styles from "./ModalComponent.module.css";
-
+// A modal component to display the content dynamically based on users actions
 export default function ModalComponent({ isOpen, onClose, children }) {
     return (
         <Modal 

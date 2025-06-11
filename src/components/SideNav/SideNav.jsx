@@ -4,7 +4,7 @@ import { FaCog, FaPlus, FaUserFriends,FaTimes, FaBars } from "react-icons/fa";
 import { userInfo } from "../../context/userContext/UserContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+// A simple side nav bar
 export default function SideNav(){
     const {user} = userInfo();
     const [isOpen, setIsOpen] = useState(true);

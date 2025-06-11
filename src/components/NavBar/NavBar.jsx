@@ -8,7 +8,7 @@ import LandingPage from "../../pages/LandingPage/LandingPage";
 import Notifications from "../Notifications/Notifications";
 import UserSearch from "../UserSearch/UserSearch";
 import Modal from 'react-modal';
-
+//  Main nav bar 
 export default function NavBar(){
     const[search,setSearch] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false); 

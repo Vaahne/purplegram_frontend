@@ -4,7 +4,7 @@ import { useAuth } from '../context/authContext/auth';
 import { useError } from '../context/errorHandlingContext/ErrorContext';
 
 const baseURL = import.meta.env.VITE_baseURL;
-
+// A unique function to perform all CRUD operations into the database
 export default async function apiRequest(url,method="GET",data={},token=null,showError = null){
     try {
          const headers = token ? {'x-auth-token':token} : {};

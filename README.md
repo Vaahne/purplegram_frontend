@@ -1,6 +1,31 @@
 ## Purplegram Front End
+A social media web application built using the MERN stack. This is the frontend repository.
+👉 Backend Repository
 [Back End](https://github.com/Vaahne/purplegram_backend)
     installed react, react-icons, dotenv ,react-router-dom , react-modal
+
+# 🚀 Tech Stack
++ React
++ React Router DOM
++ React Icons
++ React Modal
++ .env configuration
++ Socket.io-client
+
+# 🔑 Features
+🔐 Authentication
+User Login (/)
+User Registration (/createuser)
+
+ # Posts
++ View all posts (/posts)
++ View a single post (/post/:id)
++ Create a new post (/create)
++ Edit and delete posts
++ Like and comment on posts
+
+# 🔔 Notifications
++ View friend requests and activity updates
 
 ## Capability
 - authentication
