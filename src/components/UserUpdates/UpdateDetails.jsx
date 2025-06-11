@@ -33,6 +33,7 @@ export default function UpdateDetails(){
     }
 
     return <>
+        <h3>Update user details</h3>
         <form onSubmit={handleSubmit} className={styles.form}>
             <input type="text"  name="name" onChange={handleChange} value={formData.name}/>
             <input type="email" name="email" onChange={handleChange} value={formData.email}/>

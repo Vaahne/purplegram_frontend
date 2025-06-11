@@ -9,7 +9,7 @@ export default function PostBody({postType,text,photo}){
     const[isOpen,setIsOpen] = useState(false);
 
     function handleClick(){
-        setIsOpen(true);
+        // setIsOpen(true);
     }
 
     function textOnly(){

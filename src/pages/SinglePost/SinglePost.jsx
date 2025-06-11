@@ -3,38 +3,91 @@ import PostHeader from '../../components/postHeader/PostHeader';
 import PostBody from '../../components/PostBody/PostBody';
 import styles from './SinglePost.module.css';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useAuth } from '../../context/authContext/auth';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { useNavigate } from 'react-router-dom';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import { userInfo } from '../../context/userContext/UserContext';
+import { postsInfo } from '../../context/postContext/PostContext';
 
 export default function SinglePost(){
-
+    const {posts,setPosts} = postsInfo();
     const {user} = userInfo();
-    const[comment,setComment] = useState('');
+    const {cookies} = useAuth();
+    const {showError} = useError();
     const location = useLocation();
     const nav = useNavigate();
 
-    const {cookies} = useAuth();
-    const {showError} = useError();
-
+    const {postId: postIdFromNav,commentsData,post: postFromNav} = location.state || {} ;
+    const [post,setPost] = useState(postFromNav);
+    const[comments,setComments] = useState([]);
+    const[commentInput,setCommentInput] = useState('');
     const[isOpen,setIsOpen] = useState(true);
 
-    const {postId,commentsData,post} = location.state || {} ;
+    const postId = post._id || postIdFromNav ;
+
+     useEffect(() => {
+        if (!post && postIdFromNav) {
+            const fullPost = posts.find(p => p._id === idFromNav);
+            if (fullPost) setPost(fullPost);
+        }
+
+        if (postId) {
+            apiRequest(`comments/${postId}`, 'GET', {}, cookies.token, showError)
+                .then(res => setComments(res.comments))
+                .catch(err => showError('Failed to load comments'));
+        }
+    }, [postId, post]);
+
+    // for the socket
+     useEffect(() => {
+        socket.on("commentCreated", ({ postId: pid, comment }) => {
+            if (pid === postId) setComments(prev => [...prev, comment]);
+        });
+
+        socket.on("commentDeleted", ({ postId: pid, commentId }) => {
+            if (pid === postId) setComments(prev => prev.filter(c => c._id !== commentId));
+        });
+
+        socket.on("commentEdited", ({ postId: pid, updatedComment }) => {
+            if (pid === postId) {
+                setComments(prev =>
+                    prev.map(c => c._id === updatedComment._id ? updatedComment : c)
+                );
+            }
+        });
+
+        return () => {
+            socket.off("commentCreated");
+            socket.off("commentDeleted");
+            socket.off("commentEdited");
+        };
+    }, [postId]);
+
+
 
     function handleChange(e){
-        setComment(e.target.value);
+        setCommentInput(e.target.value);
     }
 
     async function handleAddComment(e){
         e.preventDefault();
-        const newComment = await apiRequest(`comments/${postId}`,'POST',{comment},cookies.token,showError);
-        // socket.emit("");
-        socket.emit("commentPost", { postId, comment: newComment._id });
-        nav('/posts');
+        try {
+            const newComment = await apiRequest(`comments/${postId}`,'POST',{comment: commentInput},cookies.token,showError);
+            // socket.emit("");
+            socket.emit("commentAction", {
+                action: 'create',
+                postId,
+                comment: newComment });
+            setCommentInput('');
+            // nav('/posts');    
+            nav('/posts', { state: { scrollToPostId: postId } });
+        } catch (err) {
+            console.error(err.message);
+        }
+        
     }
 
      function handleClose() {
@@ -48,8 +101,19 @@ export default function SinglePost(){
     }
 
     async function handleDeleteComment(id){
-        await apiRequest(`comments/${id}`,"DELETE",{},cookies.token,showError);
-        alert('Comment Deleted');
+        try {            
+            await apiRequest(`comments/${id}`,"DELETE",{},cookies.token,showError);
+
+            socket.emit("commentAction",{
+                action:"delete",
+                postId,
+                commentId : id
+            });
+            alert('Comment Deleted');
+            
+        } catch (err) {
+            console.error(err.message);
+        }
     }
 
     async function handleEditComment(commentId, oldText) {
@@ -58,32 +122,54 @@ export default function SinglePost(){
 
         try {
             await apiRequest(`comments/${commentId}`, "PUT", { comment: newText }, cookies.token, showError);
-            alert('updated successfully!!!');
+            
+            socket.emit("commentAction", {
+                action: "edit",
+                postId,
+                commentId,
+                updatedText: newText,
+            });
+            // alert('updated successfully!!!');
         } catch (err) {
             console.error("Failed to update comment:", err);
         }
     }
 
-    const userPost = post.userId;
-    console.log(user.name,': name \n photo:',user);  // todo
+    // const userPost = post.userId;
+    // console.log(user.name,': name \n photo:',user);  // todo
+
+    if(!post) return <p>Loading ....</p>
 
     return <>
         <ModalComponent isOpen={isOpen} onClose={handleClose}>
             <div key={post._id} className={styles.postContainer}>
-                <PostHeader  name={userPost.name} photo={userPost.photo} onClose={()=>handleRemove(post.postId)}/>
+                <PostHeader  name={post.userId.name} photo={post.userId.photo} onClose={()=>handleClose(post.postId)}/>
                 <div className={styles.postContent}>
-                <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
-            </div>
+                    <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
+                 </div>
             <div className={styles.commentSection}>
-                <p>{post.likes.length>0 ? post.likes.length + 'likes' : ''}  </p>
-                <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
+                <p>{post.likes.length>0 ? `${post.likes.length} likes` : ''}  </p>
+                <p>{post.comments.length>0 ? `${post.comments.length} comments` : ''}  </p>
             </div>
             <hr/>
-            {commentsData.comments.length === 0 ? (
+             {comments.map(c => (
+                    <div key={c._id} className={styles.comment}>
+                        <strong>{c.user_id?.name || `${user.name}`}:</strong>
+                        <div>{c.comment_text}</div>
+                        {user && c.user_id?._id === user._id && (
+                            <div className={styles.commentActions}>
+                                <button onClick={() => handleEditComment(c._id, c.comment_text)}>Edit</button>
+                                <button onClick={() => handleDeleteComment(c._id)}>Delete</button>
+                            </div>
+                        )}
+                    </div>
+                ))}
+
+            {/* {commentsData.comments.length === 0 ? (
             <p>No comments yet.</p>
                 ) : (
-                commentsData.comments.map((c) => (
-                   
+                // commentsData.comments.map((c) => (
+                   (posts.find(p => p._id === post._id)?.comments || []).map((c) =>(
                    
                    <div key={c._id} className={styles.comment}>
                         <strong>{c.user_id?.name || 'Anonymous'}:</strong> 
@@ -95,14 +181,11 @@ export default function SinglePost(){
                             <button onClick={() => handleDeleteComment(c._id)}>Delete</button>
                         </div>
                         )}
-
-                    </div>
-
-                    
-            ))
-            )}
+                    </div>                    
+                ))
+            )} */}
             <div>
-                    <input type="text" name="comment" placeholder='Add Comment' onChange={handleChange}  onKeyDown={handleKeyDown} value={comment}/>
+                    <input type="text" name="comment" placeholder='Add Comment' onChange={handleChange}  onKeyDown={handleKeyDown} value={commentInput}/>
             </div>
         </div> 
     </ModalComponent>

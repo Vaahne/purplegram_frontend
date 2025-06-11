@@ -15,9 +15,7 @@ export default function PostProvider({children}){
         try {
             const getPosts = async ()=>{
                 const resData = await apiRequest('posts/getPosts',"GET",{},cookies.token,showError);
-                // const res = await axios(`${baseURL}/posts/getPosts`,{
-                //                 headers: {'x-auth-token':cookies.token}
-                //             });
+               
                 setPosts(resData);
             };
                       

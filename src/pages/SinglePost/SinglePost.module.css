@@ -68,3 +68,9 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
+.commentActions > *{
+  margin: 1rem;
+}
+div > input[type="text"]{
+  width: 94%;
+}

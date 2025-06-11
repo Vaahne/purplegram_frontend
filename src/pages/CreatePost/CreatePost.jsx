@@ -20,17 +20,18 @@ export default function CreatePost(){
     });
 
     function handleChange(e){
-        const {name,value,type,files} = e.target;
-        if(type === 'file')
-            setFormData({...formData,[name]:files[0]});
-        else
-            setFormData({...formData,[name]:value});
+        setFormData({...formData,[e.target.name]:e.target.value});
+        // const {name,value,type,files} = e.target;
+        // if(type === 'file')
+        //     setFormData({...formData,[name]:files[0]});
+        // else
+            // setFormData({...formData,[name]:value});
     }
 
     async function handleSubmit(e){
-            e.preventDefault();
-            
-            if(!formData.post_text)
+        e.preventDefault();
+        try {
+            if(!formData.post_text.trim())
                 return alert('Post cannot be empty');
 
             if(formData.photo && formData.photo!= '')
@@ -38,13 +39,17 @@ export default function CreatePost(){
             
             const newPost = await apiRequest('posts',"POST",formData,cookies.token,showError);
 
-            setPosts([newPost,...posts]);
+            setPosts(prev => [newPost,...(prev || [])]);
 
             nav('/posts');
+        } catch (err) {
+            console.error(err.message);
+        }                
     }
 
     return <>
         <form onSubmit={handleSubmit} className={styles.form}>
+            <h3>Create Post</h3>
             <input type="textarea" placeholder='Your post feed' name="post_text" onChange={handleChange} value={formData.post_text}/>
             <input type="text" name="photo" onChange={handleChange} value={formData.photo} placeholder="Enter your image url" />
             <input type="submit" value="Create Post" />

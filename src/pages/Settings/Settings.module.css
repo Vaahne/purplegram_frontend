@@ -5,6 +5,8 @@
     padding: 20px;
     /* max-width: 20rem; */
     text-align: center;
+    width: 20rem;
+    margin: 2rem auto;
 }
 
 .settingsContainer div, .settingsContainer a {
@@ -19,6 +21,8 @@
 
 .settingsContainer div:hover, .settingsContainer a:hover {
     background: #f0f0f0;
+    color: blue;
+    font-weight: bolder;
 }
 
 /* .settingsContainer{

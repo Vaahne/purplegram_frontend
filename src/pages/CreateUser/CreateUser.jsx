@@ -2,9 +2,11 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContext/auth";
 import styles from './CreateUser.module.css';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateUser(){
     const {signUp} = useAuth();
+    const nav = useNavigate();
     const[formData,setFormData] = useState({
         name: '',
         email: '',
@@ -34,7 +36,7 @@ export default function CreateUser(){
             return alert('Please fill all the details!!');
         signUp(formData);
         nav('/');
-        alert('success');
+        // alert('success');
     }
     return <>
         <div className={styles.container}>

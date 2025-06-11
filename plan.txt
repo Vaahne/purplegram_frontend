@@ -27,7 +27,7 @@ Todo
 
     friend request - size 
     notifications - color 
-    after new posts - should come on posts page
+    after new posts - should come on posts page - done
     hiding a particular post on click on x
 
 -----------

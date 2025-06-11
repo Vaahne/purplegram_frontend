@@ -44,12 +44,20 @@ export default function SingleUser(){
                 toUserId: userId,
                 request: resData
             });
+            e.target.innerHTML = "Pending";
             console.log(resData);
         } catch (err) {
             console.error(err.message);
         }
     }
-    console.log(searchedUser);
+
+    function handleRemove(postId){
+        setSearchedUser(prev => ({
+            ...prev,
+            posts: prev.posts.filter(post=>post._id !== postId)
+        }))
+    }
+    // console.log(searchedUser);
     return <div>
         {searchedUser &&  <div>
                 <div>{searchedUser.name}</div>
@@ -61,7 +69,7 @@ export default function SingleUser(){
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>
-                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post.postId)}/>
+                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post._id)}/>
                          <div className={styles.postContent}>
                             <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                         </div>

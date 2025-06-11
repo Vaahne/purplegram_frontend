@@ -5,7 +5,6 @@ import Comments from "../Comments/Comments.jsx";
 import { postsInfo } from "../../context/postContext/PostContext.jsx";
 import { FaSpinner } from "react-icons/fa";
 import PostBody from "../PostBody/PostBody.jsx";
-import { useEffect } from "react";
 
 export default function Posts(){
  
@@ -13,7 +12,7 @@ export default function Posts(){
    
   
   function handleRemove(postId){
-      setPosts(prev => prev.filter((post)=>post.postId!=postId));
+      setPosts(prev => prev.filter((post)=>post._id !== postId));
   }
 
   function loading(){
@@ -25,13 +24,13 @@ export default function Posts(){
             return (
               <>
               <div key={post._id} className={styles.postContainer}>
-                  <PostHeader  name={user.name} photo={user.photo} onClose={()=>handleRemove(post.postId)}/>
+                  <PostHeader  name={user.name} photo={user.photo} onClose={()=>handleRemove(post._id)}/>
                   <div className={styles.postContent}>
                         <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                   </div>
                   <div className={styles.commentSection}>
                     <p>{post.likes.length>0 ? post.likes.length + 'likes' : ''}  </p>
-                    <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
+                    <p>{post.comments.length>0 ? post.comments.length + 'comments' : ''}  </p>
                   </div>
                   <hr/>
                   <Comments  post={post}/>

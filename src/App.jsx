@@ -14,6 +14,7 @@ import SingleUser from './pages/SingleUser/SingleUser';
 import ErrorModal from './components/ErrorModal/ErrorModal';
 import SinglePost from './pages/SinglePost/SinglePost';
 import useSocket from './context/socketContext/socketContext';
+import Friends from './pages/Friends/Friends';
 
   function App() {
     Modal.setAppElement('#root');
@@ -33,6 +34,7 @@ import useSocket from './context/socketContext/socketContext';
               <Route path='/posts' element={<Posts/>}/>
               <Route path="/singleuser/:userId" element={<SingleUser/>}/>
               <Route path="/singlepost" element={<SinglePost/>} />
+              <Route path='/friends' element={<Friends/>}/>
               <Route path="*" element={<PageNotFound/>}/>
             </Route>
         </Routes>    

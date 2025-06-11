@@ -32,13 +32,44 @@ export default function useSocket() {
     // Comments
     socket.on("updateComments",({postId,comment})=>{
         setPosts(prev =>
-             prev.map(post =>
-          post._id === postId
-            ? { ...post, comments: [...post.comments, comment] }
-            : post
-            )
+             prev.map(post => {
+               return  post._id === postId
+                    ? { ...post, comments: [...post.comments, comment] }
+                    : post            
+            })
         );
     });
+
+ // COMMENT: Delete
+  socket.on("commentDeleted", ({ postId, commentId }) => {
+    setPosts(prev =>
+      prev.map(post =>
+        post._id === postId
+          ? {
+              ...post,
+              comments: post.comments.filter(c => c._id !== commentId),
+            }
+          : post
+      )
+    );
+  });
+
+
+   // COMMENT: Edit
+  socket.on("commentEdited", ({ postId, updatedComment }) => {
+    setPosts(prev =>
+      prev.map(post =>
+        post._id === postId
+          ? {
+              ...post,
+              comments: post.comments.map(c =>
+                c._id === updatedComment._id ? updatedComment : c
+              ),
+            }
+          : post
+      )
+    );
+   });
 
     // Friend Request
      socket.on("newFriendRequest", ({ request }) => {
@@ -54,6 +85,9 @@ export default function useSocket() {
       socket.off("updateLikes");
       socket.off("newFriendRequest");
       socket.off("newNotification");
+      socket.off("updateComments");
+      socket.off("commentDeleted");
+      socket.off("commentEdited");
     };
   }, []);
 }

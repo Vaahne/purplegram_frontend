@@ -15,6 +15,8 @@ export default function Comments({post}){
     const {posts,setPosts} = postsInfo();
     const {user } = userInfo();
 
+    console.log('inside commnets ',post);
+
     // console.log(`comment posts ${post._id}`);
 
     async function handleClick(e){
@@ -23,7 +25,7 @@ export default function Comments({post}){
            
             socket.emit("likePost",{postId: post._id,userId:user._id,toggleLike: !post.likes.includes(user._id)});
 
-           const res = await apiRequest(`posts/${post._id}`,"PUT",{},cookies.token,showError);
+            await apiRequest(`posts/${post._id}`,"PUT",{},cookies.token,showError);
         //    console.log('Liked response',res);
         }else{
             const resData = await apiRequest(`comments/${post._id}`,'GET',{},cookies.token,showError);
