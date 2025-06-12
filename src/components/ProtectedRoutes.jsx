@@ -18,7 +18,6 @@ export default function ProtectedRoutes(){
             <div className='rightContainer'> 
                 <Outlet/>
             </div>
-            {/* <WeatherApi className="weather"/> */}
         </main>
     </>
 }
