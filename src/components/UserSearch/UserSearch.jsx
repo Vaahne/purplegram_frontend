@@ -56,7 +56,7 @@ export default function UserSearch({search,setSearch}){
     return   (
         <div className={styles.searchContainer}>
             {loading ? (<p >Searching...</p>) : 
-            (result.length > 0) ? (showSearch && result.map(r=> <div key={r._id} onClick={()=>handleClick(r._id)}>{r.name}</div>)): <div>No Data found</div>} 
+            (result.length > 0) ? (showSearch && result.map(r=> <div key={r._id} onClick={()=>handleClick(r._id)}>{r.photo}{r.name}</div>)): <div>No Data found</div>} 
         </div>
     )
 }

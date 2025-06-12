@@ -23,6 +23,11 @@ html, body {
     padding: 1rem;
     overflow: auto;
 }
+.weather{
+  position: fixed;
+  right:0;
+  bottom: 0;
+}
 
 @media screen and (max-width: 768px) {
     .displayContainer {

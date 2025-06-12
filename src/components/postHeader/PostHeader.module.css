@@ -1,36 +1,54 @@
-.profilePic{
+.postHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    background-color: #fff;
+    padding: 0.8rem;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+}
+
+.profilePic {
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
     object-fit: cover;
     margin-right: 1rem;
 }
-.name{
-    font-size: 1rem;
-    font-weight: bolder;
-    color: #333;
-    flex: 1;
-}
-.postHeader{
+
+.textContainer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px 10px 0 0;
-    background-color: #fff;
-    
-    /* border: 1px solid transparent; */
+    flex-direction: column;
+    justify-content: center;
 }
-.closePost{
- background-color: transparent;
-  border: none;
-  color: #999;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 50%;
-  transition: background-color 0.2s ease, color 0.2s ease;
+
+.name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
 }
-.closePost:hover{
-  background-color: #f2f2f2;
-  color: #d00;
+
+.date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.closePost {
+    background-color: transparent;
+    border: none;
+    color: #999;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closePost:hover {
+    background-color: #f2f2f2;
+    color: #d00;
 }

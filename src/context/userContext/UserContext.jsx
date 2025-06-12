@@ -15,7 +15,7 @@ export default function UserProvider({children}){
         try {
             const getUser = async ()=>{
                 const resData = await apiRequest('users/singleuser',"GET",{},cookies.token,showError);
-               
+                console.log('User comntext',resData);
                 setUser(resData);
             };
                       

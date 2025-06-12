@@ -57,23 +57,29 @@ export default function SingleUser(){
             await apiRequest(`posts/${postId}`,
                 "DELETE" , {},cookies.token,showError
             );
+
             alert("Successfully deleted the post");
         } catch (err) {
             console.error(err.message);
         }
     }
 
-    function handleRemove(p){
-        console.log(p);
-        if(p.userId == user._id){
-            const deleteOrNot = confirm("Are you sure to delete the post?");
-            if(deleteOrNot)
-                deletePost(p._id);
+    async function handleRemove(p){
+        try {
+            if(p.userId == user._id){
+                const deleteOrNot = confirm("Are you sure to delete the post?");
+                if(deleteOrNot)
+                    await deletePost(p._id);
+                socket.emit("deletePost",p._id);
+            }
+            setSearchedUser(prev => ({
+                ...prev,
+                posts: prev.posts.filter(post=>post._id !== p._id)
+            }));    
+        } catch (err) {
+            console.error(err.message);
         }
-        setSearchedUser(prev => ({
-            ...prev,
-            posts: prev.posts.filter(post=>post._id !== p._id)
-        }))
+        
     }
     // console.log(searchedUser);
     return <div className={styles.parent}>
@@ -85,10 +91,11 @@ export default function SingleUser(){
                 </div>
                 {searchedUser.posts.map(post => {
                     // const user = post.userId;
+                    console.log('seradched user',searchedUser.timestamp);
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>
-                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post)}/>
+                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} date={post.timestamp} onClose={()=>handleRemove(post)}/>
                          <div className={styles.postContent}>
                             <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                         </div>

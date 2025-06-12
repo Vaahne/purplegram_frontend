@@ -45,7 +45,7 @@ export default function Notifications(){
             return <li key={`${notification.post_id}-${index}`} className={styles.notification} onClick={()=>handleClick(notification.post_id)}>
                     <img className={styles.img} src={notification.fromUserId.photo} alt={notification.fromUserId.name}/>
                     <strong>&nbsp;{notification.fromUserId.name}&nbsp; </strong>
-                    {notification.notification_type == 'post' ? " posted on their timeline" : notification.notification_type+"ed on your post"}
+                    {notification.notification_type == 'post' ? " added a post" : notification.notification_type+"ed on your post"}
             </li>
         })
      )

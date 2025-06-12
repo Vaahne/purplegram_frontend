@@ -17,9 +17,9 @@ export default function useCommentSocket(postId, {
             if (pid === postId) onCommentDelete?.(commentId);
         });
 
-        socket.on("commentEdited", ({ postId: pid, commentId, updatedText }) => {
+        socket.on("commentEdited", ({ postId: pid, commentId, updatedComment }) => {
             if (pid === postId) {
-                onCommentEdit?.(commentId, updatedText);
+                onCommentEdit?.(commentId, updatedComment);
             }
         });
 

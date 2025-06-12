@@ -1,8 +1,8 @@
 import { createContext,useContext, useEffect, useState } from "react";
 import { useAuth } from "../authContext/auth";
-import axios from "axios";
 import apiRequest from "../../apiService/apiServiceCall";
 import { useError } from "../errorHandlingContext/ErrorContext";
+import socket from "../../socket";
 
 const NotificationContext = createContext();
 const baseURL = import.meta.env.VITE_baseURL;
@@ -27,6 +27,19 @@ export default function NotificationProvider({children}){
             console.error(err.message);
         }      
     },[cookies.token]);
+
+    // real time notification using socket
+    useEffect(() => {
+            function handleNewNotification(notification) {
+            setNotifications(prev => [notification, ...prev]);
+            }
+
+            socket.on("newNotification", handleNewNotification);
+
+            return () => {
+                socket.off("newNotification", handleNewNotification);
+            };
+    }, []);
 
     const value={
         notifications,

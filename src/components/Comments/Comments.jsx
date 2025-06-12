@@ -22,13 +22,12 @@ export default function Comments({post}){
     // This function handles all the likes and new commnets of the post 
     async function handleClick(e){
         if(e.target.name=='likes'){
-            // console.log('Liking the post ',post._id , '\nuser id',user._id);
-           
-            socket.emit("likePost",{postId: post._id,userId:user._id,toggleLike: !post.likes.includes(user._id)});
 
+            socket.emit("likePost",{postId: post._id,userId:user._id,toggleLike: !post.likes.includes(user._id)});
             await apiRequest(`posts/${post._id}`,"PUT",{},cookies.token,showError);
-        //    console.log('Liked response',res);
+        
         }else{
+        
             const resData = await apiRequest(`comments/${post._id}`,'GET',{},cookies.token,showError);
             nav('/singlepost',{
                 state: {
@@ -37,6 +36,7 @@ export default function Comments({post}){
                     commentsData : resData
                 }
             });
+        
         }
     }
     

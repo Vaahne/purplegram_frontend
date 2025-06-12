@@ -21,14 +21,12 @@ export default function SinglePost(){
     const location = useLocation();
     const nav = useNavigate();
 
-    // const {postId: postIdFromNav,commentsData,post: postFromNav} = location.state || {} ;
     const {postId} = location.state || {};
     const [post,setPost] = useState(null);
     const[comments,setComments] = useState([]);
     const[commentInput,setCommentInput] = useState('');
     const[isOpen,setIsOpen] = useState(true);
 
-    // const postId = post._id || postIdFromNav ;
 
     useEffect(()=>{
         if(postId){
@@ -57,10 +55,10 @@ export default function SinglePost(){
         onCommentDelete: (commentId) => {
             setComments(prev => prev.filter(c => c._id !== commentId));
         },
-        onCommentEdit: (commentId, updatedText) => {
+        onCommentEdit: (commentId, updatedComment) => {
             setComments(prev => 
                 prev.map(c =>
-                    c._id === commentId ? { ...c, comment_text: updatedText } : c
+                    c._id === commentId ? { ...c, comment_text: updatedComment } : c
                 )
             );
         }
@@ -73,7 +71,7 @@ export default function SinglePost(){
     async function handleAddComment(e){
         e.preventDefault();
 
-        if(!commentInput.trim()) return;
+        if(!commentInput.trim() || commentInput == '') return;
 
         try {
             const newComment = await apiRequest(
@@ -122,13 +120,16 @@ export default function SinglePost(){
                 postId,
                 commentId : id
             });
+
             alert('Comment Deleted');
 
-            setPosts(prevPost => prevPost.filter(p=>
-                                p._id==postId ? {...p,
-                                            comments:p.comments.filter(c=>c._id!=id)
-                                            }
-                                            :p));
+            setPosts(prevPosts =>
+                  prevPosts.map(p =>
+                    p._id === postId
+                    ? { ...p, comments: p.comments.filter(c => c !== id) } // if you're storing just comment IDs
+                    : p
+                )
+            );
             setComments(c=>c.filter(c=>c.id!=id));
         } catch (err) {
             console.error(err.message);
@@ -150,7 +151,7 @@ export default function SinglePost(){
                 action: "edit",
                 postId,
                 commentId,
-                updatedText: newText,
+                updatedComment: newText,
             });
             // alert('updated successfully!!!');
         } catch (err) {
