@@ -5,22 +5,27 @@
     object-fit: cover;
 }
 .name{
-    font-size: larger;
+    font-size: 1rem;
     font-weight: bolder;
 }
 .friend{
     display: flex;
     justify-content: space-between;
-    border: 1px solid rgb(132, 124, 124);
-    border-radius: .7rem;
+    border: 1px solid #ccc;
+    border-radius: .75rem;
     margin: .2rem;
     padding: 1rem;
 }
+.friend:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 .friendContainer{
     display: grid;
-    /* grid-column: 4; */
-    grid-template-columns: repeat(4,1fr);
+     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     width: 80%;
     margin: 4rem auto;
-    /* gap: 2; */
+    gap: 1.5;
+    padding:1rem;
+    box-sizing: border-box;
 }

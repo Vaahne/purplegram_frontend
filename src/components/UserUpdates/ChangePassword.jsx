@@ -2,7 +2,6 @@ import { useState,useEffect } from 'react';
 import styles from './UserUpdates.module.css';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
-import { useError } from '../../context/errorHandlingContext/ErrorContext';
 
 // export default function ChangePassword({setIsOpen}){
 export default function ChangePassword(){
@@ -13,7 +12,6 @@ export default function ChangePassword(){
         confirmPassword:''
     });
 
-    const {showError} = useError();
     const {cookies} = useAuth();
     const [error,setError] = useState("");
     

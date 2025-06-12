@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './UserUpdates.module.css';
 import { userInfo } from '../../context/userContext/UserContext';
 import apiRequest from '../../apiService/apiServiceCall';
@@ -11,6 +11,8 @@ export default function UpdateDetails(){
     const {cookies} = useAuth();
     const {showError} = useError();
     const nav = useNavigate();
+    const [error,setError] = useState("");
+
 
     const[formData,setFormData] = useState({
         name: user.name,
@@ -19,6 +21,13 @@ export default function UpdateDetails(){
         dob: user.dob
     });
 
+    useEffect(()=>{
+        if (error) {
+            const timer = setTimeout(() => setError(''), 3000);
+            return () => clearTimeout(timer);
+        }
+    },[error]);
+
     function handleChange(e){
         setFormData({...formData,[e.target.name]:e.target.value});
     }
@@ -26,13 +35,13 @@ export default function UpdateDetails(){
     async function handleSubmit(e){
         e.preventDefault();
         if(!formData.name || !formData.email || !formData.photo || !formData.dob)
-            return alert('Please fill all the feilds'); 
+            return setError('Please fill all the feilds'); 
         await apiRequest('users','PUT',formData,cookies.token,showError);
         setUser({...user,photo:formData.photo,name:formData.name});
         nav('/posts');
     }
 
-    return <>
+    return <div>
         <h3>Update user details</h3>
         <form onSubmit={handleSubmit} className={styles.form}>
             <input type="text"  name="name" onChange={handleChange} value={formData.name}/>
@@ -40,7 +49,7 @@ export default function UpdateDetails(){
             <input type="photo" name="photo" onChange={handleChange} value={formData.photo}/>
             <input type="date" name="dob"  onChange={handleChange} value={formData.dob}/>
             <input type="submit" value="Update Details" />
-            {/* <input type="button" value='cancle' onClick={()=>setIsOpen(false)} /> */}
         </form>
-    </>
+        {error && <div className={styles.error}>{error}</div>}        
+    </div>
 }

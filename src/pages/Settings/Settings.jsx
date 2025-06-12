@@ -18,10 +18,10 @@ export default function Settings(){
 
     return <>
         <div className={styles.settingsContainer}>
+            <h3>Settings & privacy </h3>
             <div onClick={handleClick} data-name="pwd" >Change Password</div>
             <div onClick={handleClick} data-name="update" >Update Details</div>
             {/* <Link to='/' >Update Details</Link> */}
-
         </div>
 
         {isOpen && <ModalComponent isOpen={isOpen} onClose={()=>setIsOpen(false)}>
