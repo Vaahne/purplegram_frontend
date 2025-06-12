@@ -30,7 +30,7 @@ export default function useSocket() {
     });
 
     // Comments
-    socket.on("updateComments",({postId,comment})=>{
+    socket.on("commentCreated",({postId,comment})=>{
         setPosts(prev =>
              prev.map(post => {
                return  post._id === postId
@@ -42,6 +42,7 @@ export default function useSocket() {
 
  // COMMENT: Delete
   socket.on("commentDeleted", ({ postId, commentId }) => {
+    console.log('inside the commnet delete socket ');
     setPosts(prev =>
       prev.map(post =>
         post._id === postId
@@ -57,6 +58,7 @@ export default function useSocket() {
 
    // COMMENT: Edit
   socket.on("commentEdited", ({ postId, updatedComment }) => {
+    console.log('Comment edited socket ');
     setPosts(prev =>
       prev.map(post =>
         post._id === postId

@@ -20,8 +20,8 @@ Todo
     search disappear the drop down after click -  done
     comments - done
     error messages for all other than 200,201 - done 
-
-    likes - 
+    likes - done 
+    
     update without refresh - 
     styling - 
 

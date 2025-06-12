@@ -29,6 +29,7 @@ export default function SingleUser(){
             try {
                 const userData = await apiRequest(`users/${userId}`,"GET",{},cookies.token,showError);
                 setSearchedUser(userData);
+                
             } catch (err) {
                 console.error(err.message);
             }
@@ -51,25 +52,43 @@ export default function SingleUser(){
         }
     }
 
-    function handleRemove(postId){
+    async function deletePost(postId) {
+        try {
+            await apiRequest(`posts/${postId}`,
+                "DELETE" , {},cookies.token,showError
+            );
+            alert("Successfully deleted the post");
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    function handleRemove(p){
+        console.log(p);
+        if(p.userId == user._id){
+            const deleteOrNot = confirm("Are you sure to delete the post?");
+            if(deleteOrNot)
+                deletePost(p._id);
+        }
         setSearchedUser(prev => ({
             ...prev,
-            posts: prev.posts.filter(post=>post._id !== postId)
+            posts: prev.posts.filter(post=>post._id !== p._id)
         }))
     }
     // console.log(searchedUser);
-    return <div>
+    return <div className={styles.parent}>
         {searchedUser &&  <div>
-                <div>{searchedUser.name}</div>
-                <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
-                {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
-                
+                <div className={styles.profile}>
+                    <h3>{searchedUser.name}</h3>
+                    <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
+                    {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
+                </div>
                 {searchedUser.posts.map(post => {
-                    const user = post.userId;
+                    // const user = post.userId;
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>
-                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post._id)}/>
+                        <PostHeader  name={searchedUser.name} photo={searchedUser.photo} onClose={()=>handleRemove(post)}/>
                          <div className={styles.postContent}>
                             <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                         </div>
@@ -78,7 +97,7 @@ export default function SingleUser(){
                             <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
                         </div>
                         <hr/>
-                        <Comments post={{...post,userId:{name:searchedUser.name, photo:searchedUser.photo}}}/>
+                        <Comments post={{...post,userId:{_id:searchedUser._id,name:searchedUser.name, photo:searchedUser.photo}}}/>
                         </div>
                     </>
                     )

@@ -17,7 +17,11 @@ export default function FriendRequestProvider({children}){
                 try {
 
                         const resData = await apiRequest(`friendreq`,'GET',{},cookies.token,showError);
-                        setFriendRequests(resData);
+                        
+                        if(Array.isArray(resData))
+                            setFriendRequests(resData);
+                        else
+                            setFriendRequests([]);
                     } catch (err) {
                         console.error(err.message);
                     }          

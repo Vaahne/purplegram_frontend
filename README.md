@@ -11,6 +11,7 @@ A social media web application built using the MERN stack. This is the frontend 
 + React Modal
 + .env configuration
 + Socket.io-client
++ framer-motion
 
 # 🔑 Features
 🔐 Authentication

@@ -11,8 +11,9 @@ import apiRequest from "../../apiService/apiServiceCall";
 //  notifications if some one posts/likes/comments
 export default function Notifications(){
     const nav = useNavigate();
-    const {notifications:initialNotifications} = notificationInfo();
-    const[notifications,setNotifications] = useState(initialNotifications);
+    const {notifications,setNotifications} = notificationInfo();
+    // const[notifications,setNotifications] = useState(initialNotifications);
+
 
      const{cookies} = useAuth();
      const {showError} = useError();
@@ -40,16 +41,16 @@ export default function Notifications(){
 
     function loaded(){
         return (
-            notifications && notifications.map(notification =>{
-            return <li key={notification.post_id} className={styles.notification} onClick={()=>handleClick(notification.post_id)}>
+            notifications && notifications.map((notification,index) =>{
+            return <li key={`${notification.post_id}-${index}`} className={styles.notification} onClick={()=>handleClick(notification.post_id)}>
                     <img className={styles.img} src={notification.fromUserId.photo} alt={notification.fromUserId.name}/>
-                    <span>{notification.fromUserId.name} {" "}</span>
-                    {notification.notification_type == 'post' ? "posted on their timeline" : notification.notification_type+"ed on your post"}
+                    <strong>&nbsp;{notification.fromUserId.name}&nbsp; </strong>
+                    {notification.notification_type == 'post' ? " posted on their timeline" : notification.notification_type+"ed on your post"}
             </li>
         })
      )
    }
-   return <>Notifications
-     {notifications ? (<ul className={styles.notificationContainer}>{loaded()}</ul>) : loading()}
+   return <> <h4>Notifications</h4>
+     {notifications.length>0 ? (<ul className={styles.notificationContainer}>{loaded()}</ul>) : loading()}
    </>
 }

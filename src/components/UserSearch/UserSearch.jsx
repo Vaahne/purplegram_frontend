@@ -48,6 +48,7 @@ export default function UserSearch({search,setSearch}){
     }  
  
     function handleClick(userId){
+        setSearch('');
         setShowSearch(false);
         nav(`/singleuser/${userId}`);
     }

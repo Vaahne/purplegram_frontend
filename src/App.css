@@ -14,8 +14,23 @@ html, body {
 }
 .displayContainer{
   display: flex;
-  padding-top: 7rem;
+  /* padding-top: 7rem; */
+  max-height: 100vh;
 }
 .rightContainer{
-  flex-grow: 1;
+  /* flex-grow: 1; */
+   flex: 1;
+    padding: 1rem;
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .displayContainer {
+        flex-direction: column;
+    }
+
+    .rightContainer {
+        padding: 1rem;
+        padding-bottom: 5rem; /* prevent overlap with bottom nav */
+    }
 }

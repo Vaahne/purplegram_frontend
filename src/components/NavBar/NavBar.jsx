@@ -8,6 +8,7 @@ import LandingPage from "../../pages/LandingPage/LandingPage";
 import Notifications from "../Notifications/Notifications";
 import UserSearch from "../UserSearch/UserSearch";
 import Modal from 'react-modal';
+import ModalComponent from "../ModalComponent/ModalComponent";
 //  Main nav bar 
 export default function NavBar(){
     const[search,setSearch] = useState('');
@@ -15,6 +16,7 @@ export default function NavBar(){
     const nav = useNavigate();
     const {cookies,logout} = useAuth();
     const [showSearch,setShowSearch] = useState(false);
+    
 
     function handleChange(e){
         const value = e.target.value;
@@ -22,8 +24,11 @@ export default function NavBar(){
         setShowSearch(value.trim().length>0);
     }
 
-    function handleLogout(){
+    function handleLogout(){   
         setIsModalOpen(true);
+        // return <ModalComponent>
+        //     <button onClick={confirmLogout}>Logout</button>
+        // </ModalComponent>     
     }
 
     function confirmLogout(){
@@ -39,10 +44,10 @@ export default function NavBar(){
                     <form className={style.form} onSubmit={(e)=>e.preventDefault()}>
                         <div>
                             <input type="text" onChange={handleChange} value={search} placeholder="Search Purplegram" className={style.search}/>
-                            {showSearch && 
-                            <div className={style.searchList}>
+                            {showSearch && search.trim() && 
+                            (<div className={style.searchList}>
                                 <UserSearch search={search} setSearch={setSearch}/>
-                            </div>
+                            </div>)
                             }
                         </div>
                     </form></li>

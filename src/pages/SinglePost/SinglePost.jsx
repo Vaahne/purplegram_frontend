@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import { userInfo } from '../../context/userContext/UserContext';
 import { postsInfo } from '../../context/postContext/PostContext';
+import useCommentSocket from '../../context/socketContext/useCommentSocket';
 
 export default function SinglePost(){
     const {posts,setPosts} = postsInfo();
@@ -20,53 +21,50 @@ export default function SinglePost(){
     const location = useLocation();
     const nav = useNavigate();
 
-    const {postId: postIdFromNav,commentsData,post: postFromNav} = location.state || {} ;
-    const [post,setPost] = useState(postFromNav);
+    // const {postId: postIdFromNav,commentsData,post: postFromNav} = location.state || {} ;
+    const {postId} = location.state || {};
+    const [post,setPost] = useState(null);
     const[comments,setComments] = useState([]);
     const[commentInput,setCommentInput] = useState('');
     const[isOpen,setIsOpen] = useState(true);
 
-    const postId = post._id || postIdFromNav ;
+    // const postId = post._id || postIdFromNav ;
 
-     useEffect(() => {
-        if (!post && postIdFromNav) {
-            const fullPost = posts.find(p => p._id === idFromNav);
-            if (fullPost) setPost(fullPost);
+    useEffect(()=>{
+        if(postId){
+            const updated = posts.find(p=>p._id===postId);
+            if(updated) setPost(updated);
         }
+    },[posts,postId]);
 
-        if (postId) {
+     useEffect(() => {  
+        try {
+            if (postId) {
             apiRequest(`comments/${postId}`, 'GET', {}, cookies.token, showError)
                 .then(res => setComments(res.comments))
                 .catch(err => showError('Failed to load comments'));
-        }
+        }    
+        } catch (err) {
+            console.error(err);
+        }   
     }, [postId, post]);
 
-    // for the socket
-     useEffect(() => {
-        socket.on("commentCreated", ({ postId: pid, comment }) => {
-            if (pid === postId) setComments(prev => [...prev, comment]);
-        });
 
-        socket.on("commentDeleted", ({ postId: pid, commentId }) => {
-            if (pid === postId) setComments(prev => prev.filter(c => c._id !== commentId));
-        });
-
-        socket.on("commentEdited", ({ postId: pid, updatedComment }) => {
-            if (pid === postId) {
-                setComments(prev =>
-                    prev.map(c => c._id === updatedComment._id ? updatedComment : c)
-                );
-            }
-        });
-
-        return () => {
-            socket.off("commentCreated");
-            socket.off("commentDeleted");
-            socket.off("commentEdited");
-        };
-    }, [postId]);
-
-
+    useCommentSocket(postId, {
+        onCommentCreate: (comment) => {
+            setComments(prev => [...prev, comment]);
+        },
+        onCommentDelete: (commentId) => {
+            setComments(prev => prev.filter(c => c._id !== commentId));
+        },
+        onCommentEdit: (commentId, updatedText) => {
+            setComments(prev => 
+                prev.map(c =>
+                    c._id === commentId ? { ...c, comment_text: updatedText } : c
+                )
+            );
+        }
+    });
 
     function handleChange(e){
         setCommentInput(e.target.value);
@@ -74,14 +72,28 @@ export default function SinglePost(){
 
     async function handleAddComment(e){
         e.preventDefault();
+
+        if(!commentInput.trim()) return;
+
         try {
-            const newComment = await apiRequest(`comments/${postId}`,'POST',{comment: commentInput},cookies.token,showError);
+            const newComment = await apiRequest(
+                                `comments/${postId}`,
+                                'POST',
+                                {comment: commentInput},
+                                cookies.token,
+                                showError);
             // socket.emit("");
             socket.emit("commentAction", {
                 action: 'create',
                 postId,
                 comment: newComment });
+
             setCommentInput('');
+
+            setPosts(prevPosts => prevPosts.map(p=> p._id == postId ? {
+                    ...p,
+                    comments : [...p.comments,newComment._id]
+            }:p));
             // nav('/posts');    
             nav('/posts', { state: { scrollToPostId: postId } });
         } catch (err) {
@@ -102,7 +114,8 @@ export default function SinglePost(){
 
     async function handleDeleteComment(id){
         try {            
-            await apiRequest(`comments/${id}`,"DELETE",{},cookies.token,showError);
+            // console.log(id);
+            await apiRequest(`comments/${id}`,"DELETE",{postId},cookies.token,showError);
 
             socket.emit("commentAction",{
                 action:"delete",
@@ -110,7 +123,13 @@ export default function SinglePost(){
                 commentId : id
             });
             alert('Comment Deleted');
-            
+
+            setPosts(prevPost => prevPost.filter(p=>
+                                p._id==postId ? {...p,
+                                            comments:p.comments.filter(c=>c._id!=id)
+                                            }
+                                            :p));
+            setComments(c=>c.filter(c=>c.id!=id));
         } catch (err) {
             console.error(err.message);
         }
@@ -121,7 +140,11 @@ export default function SinglePost(){
         if (!newText) return;
 
         try {
-            await apiRequest(`comments/${commentId}`, "PUT", { comment: newText }, cookies.token, showError);
+            await apiRequest(`comments/${commentId}`, 
+                        "PUT", 
+                        { comment: newText },
+                         cookies.token, 
+                         showError);
             
             socket.emit("commentAction", {
                 action: "edit",
@@ -150,6 +173,7 @@ export default function SinglePost(){
             <div className={styles.commentSection}>
                 <p>{post.likes.length>0 ? `${post.likes.length} likes` : ''}  </p>
                 <p>{post.comments.length>0 ? `${post.comments.length} comments` : ''}  </p>
+                {/* <p>{comments.length > 0 ? `${comments.length} comments` : ''}</p> */}
             </div>
             <hr/>
              {comments.map(c => (
@@ -164,26 +188,6 @@ export default function SinglePost(){
                         )}
                     </div>
                 ))}
-
-            {/* {commentsData.comments.length === 0 ? (
-            <p>No comments yet.</p>
-                ) : (
-                // commentsData.comments.map((c) => (
-                   (posts.find(p => p._id === post._id)?.comments || []).map((c) =>(
-                   
-                   <div key={c._id} className={styles.comment}>
-                        <strong>{c.user_id?.name || 'Anonymous'}:</strong> 
-                        <div>{c.comment_text}</div>
-
-                       {user && c.user_id?._id === user._id && (
-                        <div className={styles.commentActions}>
-                            <button onClick={() => handleEditComment(c._id, c.comment_text)}>Edit</button>
-                            <button onClick={() => handleDeleteComment(c._id)}>Delete</button>
-                        </div>
-                        )}
-                    </div>                    
-                ))
-            )} */}
             <div>
                     <input type="text" name="comment" placeholder='Add Comment' onChange={handleChange}  onKeyDown={handleKeyDown} value={commentInput}/>
             </div>

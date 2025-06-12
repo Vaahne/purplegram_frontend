@@ -1,35 +1,41 @@
 .nav > ul{
     width: 100vw;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
-    background-color: rgb(251, 251, 251);
+    background-color: #ffffff;
+    padding: .75rem 2rem;
     /* color: white; */
     font-weight: bolder;
     list-style-type: none;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 3px 12px  rgba(0, 0, 0, 0.1); 
     position: fixed;
     top:0;
     left:0;
     margin: 0;
-    z-index: 9999;
+    z-index: 100;
 }
 
 .navItem{
-    font-size: 40px;
+    font-size: 1.8rem;
+    color: #444;
     margin-top: 1rem;
     position: relative;
     display: inline-block;
+    transition : all .3s ease;
     /* transition-property: all;
     transition-duration: 1s; */
 }
 .logoLetter{
     border-radius: 50%;
     height: 3rem;
-    margin:1rem;
+    /* margin:1rem; */
 }
 .logoLi{
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    /* justify-content: space-around; */
 }
 .form{
     margin: auto 0;
@@ -41,28 +47,48 @@
 .subElement{
     display: none;
     position: absolute;
-    font-size: 2rem;
-    width: 36rem;
-    background-color:  rgb(38, 38, 72);
-    color: white;
-    border-radius: 2rem;
+    top:100%;
+    /* right:0; */
+    font-size: 1rem;
+    width: 300px;
+    /* margin-top:.5rem ; */
+    background-color: rgb(94, 94, 138);
+    border: 2px solid black; /* ✅ Helps track position */
+    color: rgb(215, 215, 220);
+    border-radius: 1rem;
+    padding: .75rem;
 }
 .searchList{
     /* display: none; */
     position: absolute;
-    font-size: 2rem;
-    width: 300px;
+    font-size: 1rem;
+    width: 280px;
+    /* top: 100%;
+    left:0; */
+    /* margin-top: .5rem; */
     background-color:  rgb(38, 38, 72);
     color: white;
-    border-radius: 2rem;
+    border-radius: 1rem;
+    padding: .5rem;
 }
-.navItem:hover  .subElement
-{
+.navItem:hover{
+    color:#7b4dd6;
+}
+.navItem:hover  .subElement {
     display: block;
+    z-index: 200;
 }
 .search{
-    border-radius: .9rem;
-    padding: .4rem;
+    border-radius: 1.5rem;
+    padding: .4rem 1rem;
+    font-size: 1rem;
+    width: 240px;
+    transition: all 0.3s ease;
+}
+.search:focus{
+    outline: none;
+    border-color: #7b4dd6;
+    box-shadow: 0 0 0 2px rgba(123,77,214,.2);
 }
 .modalContainer {
     position: fixed;
@@ -85,4 +111,9 @@
     box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
     text-align: center;
     animation: fadeIn 0.3s ease-in-out;
+}
+
+.modalContent > button{
+    margin: .2rem;
+    padding:1rem;
 }

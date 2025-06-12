@@ -9,14 +9,14 @@ import { userInfo } from '../../context/userContext/UserContext';
 
 
 export default function Comments({post}){
-
+    console.log(post);
     const{cookies} = useAuth();
     const nav = useNavigate();
     const {showError} = useError();
     const {posts,setPosts} = postsInfo();
     const {user } = userInfo();
 
-    console.log('inside commnets ',post);
+    // console.log('inside commnets ',post);
 
     // console.log(`comment posts ${post._id}`);
     // This function handles all the likes and new commnets of the post 

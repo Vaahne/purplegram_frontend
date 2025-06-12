@@ -2,9 +2,20 @@
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
+    transition: box-shadow 0.3s ease-in-out;
+    padding: 1rem;
+    background-color: #fdfdfd;
+     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    /* margin: 1rem auto; */
+}
+.postBody:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
 .text{
   font-size: larger;
+  color: #333;
+  text-align: center;
 }
 .modalStyle {
   background: linear-gradient(135deg, #fffaf0, #716b5a); /* subtle gradient */
@@ -17,5 +28,10 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
-
+}
+.postImg{
+  width: 100%;
+  /* max-width: 400px; */
+  border-radius: .4rem;
+  object-fit: cover;
 }
