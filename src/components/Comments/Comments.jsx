@@ -20,7 +20,7 @@ export default function Comments({post}){
         if(e.target.name=='likes'){
 
             socket.emit("likePost",{postId: post._id,userId:user._id,toggleLike: !post.likes.includes(user._id)});
-            await apiRequest(`posts/${post._id}`,"PUT",{},cookies.token,showError);
+            await apiRequest(`posts/addlike/${post._id}`,"PUT",{},cookies.token,showError);
         
         }else{
         

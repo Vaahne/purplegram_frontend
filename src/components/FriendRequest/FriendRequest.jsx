@@ -5,6 +5,7 @@ import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { userInfo } from '../../context/userContext/UserContext';
+import socket from '../../socket';
 
 export default function FriendRequest() {
     const { friendRequests, setFriendRequests } = friendRequestInfo();

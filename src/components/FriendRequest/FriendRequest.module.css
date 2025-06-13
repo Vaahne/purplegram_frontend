@@ -16,6 +16,9 @@
     padding: .3rem;
 }
 .frnTitle{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 7rem;
     font-size: x-large;
     font-weight: bolder;
 }

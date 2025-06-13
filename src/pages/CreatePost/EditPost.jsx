@@ -5,6 +5,7 @@ import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { postsInfo } from '../../context/postContext/PostContext';
+import socket from '../../socket';
 
 export default function EditPost({post,onClose}){
     const {posts,setPosts} = postsInfo();
@@ -42,12 +43,14 @@ export default function EditPost({post,onClose}){
                 formData.postType = 'photo';
             
             const updatedPost = await apiRequest(`posts/${post._id}`,"PUT",formData,cookies.token,showError);
+            console.log('updated post: ',updatedPost);
+            socket.emit("postUpdated", {postId: post._id, updatedPost: updatedPost });
 
-            // setPosts(prev => [newPost,...(prev || [])]);
-            socket.emit("updatePost", { postId, updatedPost: editData });
             setPosts(prev => prev.map(p => p._id === post._id ? updatedPost : p));
+            // alert("done");
+            // if(onClose) onClose(null);
+            nav('/posts');
 
-            if(onClose) onClose(null);
             // nav(-1); // takes to the previous page
         } catch (err) {
             console.error(err.message);
@@ -56,7 +59,7 @@ export default function EditPost({post,onClose}){
 
     return <>
         <form onSubmit={handleSubmit} className={styles.form}>
-            <h3>Create Post</h3>
+            <h3>Edit Post</h3>
             <input type="textarea" placeholder='Your post feed' name="post_text" onChange={handleChange} value={formData.post_text}/>
             <input type="text" name="photo" onChange={handleChange} value={formData.photo} placeholder="Enter your image url" />
             <input type="submit" value="Update Post" />
