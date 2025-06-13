@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import styles from './CreatePost.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext/auth';
@@ -9,6 +9,7 @@ import { postsInfo } from '../../context/postContext/PostContext';
 export default function CreatePost(){
     const {posts,setPosts} = postsInfo();
 
+    const [error,setError] = useState('');
     const {showError} = useError();
     const nav = useNavigate();
     const {cookies} = useAuth();
@@ -18,6 +19,14 @@ export default function CreatePost(){
         photo: '',
         postType: 'text'
     });
+
+     useEffect(() => {
+            if (error) {
+                const timer = setTimeout(() => setError(''), 3000);
+                return () => clearTimeout(timer);
+            }
+    }, [error]);
+
 
     function handleChange(e){
         setFormData({...formData,[e.target.name]:e.target.value});
@@ -32,7 +41,7 @@ export default function CreatePost(){
         e.preventDefault();
         try {
             if(!formData.post_text.trim())
-                return alert('Post cannot be empty');
+                return setError('Post cannot be empty');
 
             if(formData.photo && formData.photo!= '')
                 formData.postType = 'photo';
@@ -54,5 +63,6 @@ export default function CreatePost(){
             <input type="text" name="photo" onChange={handleChange} value={formData.photo} placeholder="Enter your image url" />
             <input type="submit" value="Create Post" />
         </form>
+        {error && <div className={styles.error}>{error}</div>}
     </>
 }

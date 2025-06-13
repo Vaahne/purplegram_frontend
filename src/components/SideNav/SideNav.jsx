@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // A simple side nav bar
 export default function SideNav(){
     const {user} = userInfo();
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const nav = useNavigate();
     function toggleNav(){
         setIsOpen(prev=>!prev);

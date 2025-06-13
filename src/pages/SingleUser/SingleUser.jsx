@@ -89,9 +89,8 @@ export default function SingleUser(){
                     <img className={styles.img} src={searchedUser.photo} alt={searchedUser.name}/>
                     {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
                 </div>
+                {/* Displaying the posts of particular user */}
                 {searchedUser.posts.map(post => {
-                    // const user = post.userId;
-                    console.log('seradched user',searchedUser.timestamp);
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>

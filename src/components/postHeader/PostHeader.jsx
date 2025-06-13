@@ -18,11 +18,10 @@ export default function PostHeader({ name, photo, date, onClose }) {
             hour12: false, // 24-hour format
         });
 
-        console.log(` formated Date : ${formattedDate} at ${formattedTime}`);
+        // console.log(` formated Date : ${formattedDate} at ${formattedTime}`);
         return `${formattedDate} at ${formattedTime}`;
     }
 
-    convertDate(date);
 
     return (
          <div className={styles.postHeader}>

@@ -10,7 +10,7 @@ A social media web application built using the MERN stack. This is the frontend 
 + React Icons
 + React Modal
 + .env configuration
-+ Socket.io-client
++ Socket.io-client for real time updates
 + framer-motion
 
 # 🔑 Features

@@ -22,7 +22,6 @@ export default function Posts(){
     return  <div className={styles.parentContainer}>
       { posts.length>0 ? (posts.map(post=>{
                 const user = post.userId;
-                console.log('user : ',user.timestamp);
                 return (
                       <div key={post._id} className={styles.postContainer}>
                           <PostHeader  date={post.timestamp} name={user.name} photo={user.photo} onClose={()=>handleRemove(post._id)}/>

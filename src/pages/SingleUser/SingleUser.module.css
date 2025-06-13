@@ -1,10 +1,21 @@
 .profile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* margin-bottom: .2rem; */
+
+    text-align: center;
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ✅ Subtle depth */
+    width: 350px;
+    margin: 0 auto;
+   
+}
+.profile h3 {
+    color: #374151; /* ✅ Dark gray for contrast */
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 .img{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     height: 9rem;
     width: 9rem;
@@ -13,14 +24,25 @@
 .postContainer{
     /* border: .2rem solid rgb(184, 179, 179); */
     width: 36rem;
-    margin: 1rem auto;
+    /* margin: .1rem auto; */
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0 36px 4px rgba(0,0,0,.18);
     margin-top: 7rem;
 }
+.postContent {
+    padding: 12px;
+    font-size: 16px;
+    color: #374151;
+}
 .parent{
-    margin-top : 7rem;
+    margin-top : 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #F4F5FC, #E3E6F3); /* ✅ Soft gradient */
+    min-height: 100vh;
 }
 .userName{
     font-size: larger;
@@ -29,5 +51,15 @@
     display: flex;
     justify-content: space-between;
     font-size: .9rem;
-    color: #777;
+    color: #6579B1;
+}
+
+@media screen and (max-width: 600px) {
+    .postContainer {
+        width: 90%;
+    }
+    
+    .profile {
+        width: 90%;
+    }
 }

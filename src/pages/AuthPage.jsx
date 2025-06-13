@@ -1,4 +1,4 @@
-import LandingPage from "./LandingPage/LandingPage";
+import LandingPage from "./userForms/LandingPage";
 
 export default function AuthPage(){
 

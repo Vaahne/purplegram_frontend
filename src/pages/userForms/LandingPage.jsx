@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext/auth";
 import { useNavigate } from "react-router-dom";
-import styles from './LandingPage.module.css';
+import styles from './userForm.module.css';
 import purplegramLogo from '../../assets/images/PurplegramLogo.png'
 
 export default function LandingPage(){
@@ -26,14 +26,12 @@ export default function LandingPage(){
 
     async function handleSubmit(e){
         e.preventDefault();
+        if(!formData.email || !formData.password)
+            return alert('Please fill the details');
         await login(formData);
         nav('/posts');
     }
 
-    function redirect(){
-        nav('/posts');
-    }
-    
     return <> 
         <div className={styles.container}>
         <div className={styles.textContainer}>

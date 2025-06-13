@@ -1,7 +1,8 @@
 .notificationContainer{
+    background-color: #4B5D89;
     list-style-type: none;
     /* background-color: rgb(74, 98, 198); */
-     background-color: rgb(67, 67, 119);
+     /* background-color: rgb(67, 67, 119); */
     border-radius: 2rem;
     max-width: 280px; 
     padding: .5rem;
@@ -18,7 +19,8 @@
     /* justify-content: space-between; */
 }
 .notification:hover{
-    background-color: rgb(106, 109, 112);
+     background-color: #6579B1;
+    /* background-color: rgb(106, 109, 112); */
     cursor: pointer;
 }
 .img{
@@ -26,4 +28,6 @@
     width: 3rem;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }

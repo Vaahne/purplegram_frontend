@@ -16,6 +16,7 @@ export default async function apiRequest(url,method="GET",data={},token=null,sho
                         data,
                         headers
                     });
+        console.log('from api request: ',response.data);
         // alert('from api request: ',response.data);
         return response.data;
     } catch (err) {        

@@ -92,8 +92,8 @@ export default function SinglePost(){
                     ...p,
                     comments : [...p.comments,newComment._id]
             }:p));
-            // nav('/posts');    
-            nav('/posts', { state: { scrollToPostId: postId } });
+            // nav('/posts', { state: { scrollToPostId: postId } });
+            nav(-1);
         } catch (err) {
             console.error(err.message);
         }
@@ -103,6 +103,7 @@ export default function SinglePost(){
      function handleClose() {
         setIsOpen(false);
         nav("/posts"); // Redirect after closing modal
+        // nav(-1);
     }
 
     function handleKeyDown(e){
@@ -153,6 +154,7 @@ export default function SinglePost(){
                 commentId,
                 updatedComment: newText,
             });
+            // setCommentInput(newText);
             // alert('updated successfully!!!');
         } catch (err) {
             console.error("Failed to update comment:", err);
@@ -167,7 +169,7 @@ export default function SinglePost(){
     return <>
         <ModalComponent isOpen={isOpen} onClose={handleClose}>
             <div key={post._id} className={styles.postContainer}>
-                <PostHeader  name={post.userId.name} photo={post.userId.photo} onClose={()=>handleClose(post.postId)}/>
+                <PostHeader  name={post.userId.name} photo={post.userId.photo} date={post.timestamp} onClose={()=>handleClose(post.postId)}/>
                 <div className={styles.postContent}>
                     <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
                  </div>

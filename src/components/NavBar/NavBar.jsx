@@ -4,7 +4,7 @@ import { FaBell, FaHome, FaSignOutAlt, FaUserFriends } from "react-icons/fa";
 import { useState } from "react";
 import logoLetter from '../../assets/images/LogoLetter.png'
 import { useAuth } from "../../context/authContext/auth";
-import LandingPage from "../../pages/LandingPage/LandingPage";
+import LandingPage from "../../pages/userForms/LandingPage";
 import Notifications from "../Notifications/Notifications";
 import UserSearch from "../UserSearch/UserSearch";
 import Modal from 'react-modal';

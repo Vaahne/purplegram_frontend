@@ -8,6 +8,10 @@
     background: #ffffff;
     box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
     transition: left 0.3s ease-in-out; /* Smooth sliding effect */
+
+    background: linear-gradient(135deg, #24283A, #374151); /* ✅ Sleek dark blue-gray gradient */
+    box-shadow: 2px 0px 12px rgba(0, 0, 0, 0.2); /* ✅ Adds subtle depth */
+    padding: 1.5rem;
 }
 
 
@@ -31,11 +35,13 @@
 }
 
 .profilePic {
+    border: 3px solid #6579B1;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Sidebar Links */
@@ -45,19 +51,22 @@
     cursor: pointer;
     transition: background 0.3s ease;
 }
-
 .sideNav li:hover {
-    background: #f0f0f0;
+    background: #CBD2F7; /* ✅ Light blue hover effect */
+    transition: all 0.3s ease-in-out;
+    border-radius: 1rem;
 }
 
 /* Icons */
 .navItem {
+     color: #E3E6F3; /* ✅ Soft white for better readability */
+    transition: transform 0.2s ease-in-out, color 0.3s ease-in-out;
     font-size: 40px;
-    color: #333;
-    transition: transform 0.2s ease-in-out;
+  
 }
 
 .navItem:hover {
+    color: #A3BFFA; 
     transform: scale(1.1);
 }
 
@@ -87,15 +96,13 @@
     transform: scale(1.1);
 }
 .name{
+    color :#E3E6F3;
     font-size: larger;
     font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
-    /* .displayContainer {
-        flex-direction: column;
-    } */
-
+   
     .sideNav >ul {
         width: 100%;
         height: 4rem;
@@ -111,8 +118,4 @@
         z-index: 1000;
     }
 
-    /* .rightContainer {
-        padding: 1rem;
-        padding-bottom: 5rem; /* prevent overlap with bottom nav */
-   /* } */
 }

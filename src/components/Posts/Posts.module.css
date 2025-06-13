@@ -1,18 +1,34 @@
+
 .postContainer{
+    width: 45rem;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ✅ Subtle depth */
+    transition: transform 0.2s ease-in-out;
     /* border: .2rem solid rgb(184, 179, 179); */
-    width: 36rem;
+    /* width: 36rem;
     margin: 2rem auto;
     padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 0 0 36px 4px rgba(0,0,0,.18);
+    box-shadow: 0 0 36px 4px rgba(0,0,0,.18); */
     /* margin-top: 7rem; */
 }
 .parentContainer{
-  margin-top: 7rem;
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #F4F5FC, #E3E6F3);
+    margin-top: 7rem;
 }
 .postContent{
-   margin-top: 0.75rem;
-  margin-bottom: 1rem;
+  padding: 12px;
+  font-size: 16px;
+  color: #374151;
+  /* margin-top: 0.75rem;
+  margin-bottom: 1rem; */
     /* border: .1rem solid grey; */
 }
 .commentSection{
@@ -20,6 +36,9 @@
     justify-content: space-between;
     font-size: .9rem;
     color: #777;
+}
+.postContainer:hover {
+    transform: translateY(-3px); /* ✅ Smooth hover effect */
 }
 .spinner {
   animation: spin 1s linear infinite;

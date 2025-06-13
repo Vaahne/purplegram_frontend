@@ -6,7 +6,7 @@ import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { useNavigate } from 'react-router-dom';
 import { postsInfo } from '../../context/postContext/PostContext';
 import { userInfo } from '../../context/userContext/UserContext';
-
+// import {useState} from 'react';
 
 export default function Comments({post}){
     console.log(post);
@@ -15,11 +15,7 @@ export default function Comments({post}){
     const {showError} = useError();
     const {posts,setPosts} = postsInfo();
     const {user } = userInfo();
-
-    // console.log('inside commnets ',post);
-
-    // console.log(`comment posts ${post._id}`);
-    // This function handles all the likes and new commnets of the post 
+    
     async function handleClick(e){
         if(e.target.name=='likes'){
 

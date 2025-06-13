@@ -1,9 +1,21 @@
 .searchContainer{
-    color: blue;
+     color: #374151;
+     font-weight: 500;
     border-radius: 1rem;
+    padding: 10px;
+     background-color: #F4F5FC;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .searchContainer > div:hover{
     cursor: pointer;
-    background-color: rgb(118, 139, 139);
+    background-color: #CBD2F7;
     border-radius: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+.searchContainer img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px; /* ✅ Ensures space between image & text */
 }

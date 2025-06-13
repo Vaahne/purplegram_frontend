@@ -36,9 +36,9 @@ export default function UpdateDetails(){
         e.preventDefault();
         if(!formData.name || !formData.email || !formData.photo || !formData.dob)
             return setError('Please fill all the feilds'); 
-        await apiRequest('users','PUT',formData,cookies.token,showError);
-        setUser({...user,photo:formData.photo,name:formData.name});
-        nav('/posts');
+        const status = await apiRequest('users','PUT',formData,cookies.token,showError);
+        if(status) setUser({...user,photo:formData.photo,name:formData.name,email:formData.email});
+        nav('/');
     }
 
     return <div>
@@ -46,7 +46,7 @@ export default function UpdateDetails(){
         <form onSubmit={handleSubmit} className={styles.form}>
             <input type="text"  name="name" onChange={handleChange} value={formData.name}/>
             <input type="email" name="email" onChange={handleChange} value={formData.email}/>
-            <input type="photo" name="photo" onChange={handleChange} value={formData.photo}/>
+            <input type="text" name="photo" onChange={handleChange} value={formData.photo}/>
             <input type="date" name="dob"  onChange={handleChange} value={formData.dob}/>
             <input type="submit" value="Update Details" />
         </form>

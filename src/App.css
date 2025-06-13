@@ -4,6 +4,16 @@ html, body {
   /* overflow-x: hidden; */
 }
 
+body, html {
+    overflow: hidden; /* ✅ Prevents scrolling globally */
+    height: 100%; /* ✅ Ensures no extra space is added */
+}
+/* body {
+  background: url('https://cdn.thenewstack.io/media/2023/03/4e161c3d-knowledge-graph-connections.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3); /* fallback */
+/* } */ 
+
 #root {
   /* height: 70px; */
   width: 100vw;
@@ -12,22 +22,64 @@ html, body {
   text-align: center;
   min-height: 100vh;  /* Ensures it fills the screen */
 }
-.displayContainer{
+.displayContainer {
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(135deg, #F4F5FC, #E3E6F3); /* ✅ Soft gradient background */
+    padding: 1rem;
+}
+
+/* .displayContainer{
   display: flex;
   /* padding-top: 7rem; */
-  max-height: 100vh;
+  /* max-height: 100vh; */
+/* } */ 
+
+.rightContainer {
+    flex: 1;
+    background: #FFFFFF; /* ✅ Clean white background */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ✅ Soft shadow effect */
+    overflow-y: auto;
+    /* background-image: url('https://tse3.mm.bing.net/th?id=OIP.304IzBviAGgi13rxBoSxVQHaHa&pid=Api&P=0&h=180') no-repeat ; */
 }
-.rightContainer{
+
+/* .rightContainer{
   /* flex-grow: 1; */
-   flex: 1;
+   /* flex: 1;
     padding: 1rem;
-    overflow: auto;
+    overflow: auto; */
+/* }  */
+/* 
+
+.mainContent {
+  margin-left: 70px;
+  transition: margin-left 0.3s ease-in-out;
 }
-.weather{
-  position: fixed;
-  right:0;
-  bottom: 0;
+
+.sideNav.open ~ .mainContent {
+  margin-left: 220px;
+} */
+
+.sidebarOpen + .mainContent {
+  margin-left: 220px;
 }
+
+
+.error {
+  color: red;
+  background-color: #ffe0e0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid red;
+  width: 50%;
+}
+
 
 @media screen and (max-width: 768px) {
     .displayContainer {

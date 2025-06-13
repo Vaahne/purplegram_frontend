@@ -5,8 +5,8 @@ import FriendRequest from './components/FriendRequest/FriendRequest';
 import Posts from './components/Posts/Posts';
 import PageNotFound from './pages/PageNotFound';
 import CreatePost from './pages/CreatePost/CreatePost';
-import LandingPage from './pages/LandingPage/LandingPage';
-import CreateUser from './pages/CreateUser/CreateUser';
+// import LandingPage from './pages/LandingPage/LandingPage';
+// import CreateUser from './pages/CreateUser/CreateUser';
 import Settings from './pages/Settings/Settings';
 import Modal from 'react-modal';
 import ProtectedRoutes from './components/ProtectedRoutes';
@@ -15,6 +15,8 @@ import ErrorModal from './components/ErrorModal/ErrorModal';
 import SinglePost from './pages/SinglePost/SinglePost';
 import useSocket from './context/socketContext/socketContext';
 import Friends from './pages/Friends/Friends';
+import LandingPage from './pages/userForms/LandingPage';
+import CreateUser from './pages/userForms/CreateUser';
 
   function App() {
     Modal.setAppElement('#root');

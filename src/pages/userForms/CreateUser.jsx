@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { useAuth } from "../../context/authContext/auth";
-import styles from './CreateUser.module.css';
+import styles from './userForm.module.css';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateUser(){
     const {signUp} = useAuth();
+    const[error,setError] = useState('');
+
     const nav = useNavigate();
     const[formData,setFormData] = useState({
         name: '',
@@ -16,6 +18,15 @@ export default function CreateUser(){
         photo: '',
         gender: ''
     });
+
+
+    useEffect(() => {
+                if (error) {
+                    const timer = setTimeout(() => setError(''), 3000);
+                    return () => clearTimeout(timer);
+                }
+    }, [error]);
+    
     
     function handleChange(e) {
         const { name, type, value, files } = e.target;
@@ -29,11 +40,11 @@ export default function CreateUser(){
     function handleSubmit(e){
         e.preventDefault();
         if(formData.password !== formData.password2)
-            return alert('Passwords should match!!');
+            return setError('Passwords should match!!');
         if(formData.password.length < 8)
-            return alert('Password should be atleast 6 characters');
+            return setError('Password should be atleast 6 characters');
         if(!formData.name || !formData.email || !formData.password || !formData.photo || !formData.dob )
-            return alert('Please fill all the details!!');
+            return setError('Please fill all the details!!');
         signUp(formData);
         nav('/');
         // alert('success');
@@ -43,7 +54,7 @@ export default function CreateUser(){
          <div className={styles.textContainer}>
             <h1 className={styles.name}>Purplegram</h1>
          </div>
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <form onSubmit={handleSubmit} className={styles.form}>
             <h3>Register User</h3>
             <input type="text" name="name" placeholder="Name" onChange={handleChange} required value={formData.name}/>
             <input type="email" name="email" placeholder="Email" onChange={handleChange} required value={formData.email}/>
@@ -59,6 +70,7 @@ export default function CreateUser(){
             <input type="submit" value="Create user"/>
             <p>Already have an account? <span><Link to='/'>Login</Link></span></p>
         </form>
+                {error && <div className={styles.error}>{error}</div>}     
         </div>
     </>
 }
