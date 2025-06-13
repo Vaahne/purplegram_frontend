@@ -10,12 +10,17 @@ import apiRequest from '../../apiService/apiServiceCall';
 import socket from '../../socket';
 import { friendRequestInfo } from '../../context/friendRequestContext/FriendRequestContext';
 import { userInfo } from '../../context/userContext/UserContext';
+import EditPost from '../CreatePost/EditPost';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
 
 
 export default function SingleUser(){
     // const {fetchUser,searchedUser} = userInfo();
     const[searchedUser,setSearchedUser] = useState();
     const {setFriendRequests} = friendRequestInfo();
+    const [editPost,setEditPost] = useState(null);
+    const[isOpen,setIsOpen] = useState(false);
+
     const {user} = userInfo();
 
     const {cookies} = useAuth();
@@ -66,6 +71,13 @@ export default function SingleUser(){
         }
     }
 
+    function handleEditPost(post){
+        if(user._id == post.userId){
+            setIsOpen(true);
+            setEditPost(post);
+        }
+    }
+
     async function handleRemove(p){
         try {
             if(p.userId == user._id){
@@ -100,8 +112,8 @@ export default function SingleUser(){
                     <>
                         <div key={post._id} className={styles.postContainer}>
                         <PostHeader  name={searchedUser.name} photo={searchedUser.photo} date={post.timestamp} onClose={()=>handleRemove(post)}/>
-                         <div className={styles.postContent}>
-                            <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo} />
+                         <div className={styles.postContent} onClick={() => handleEditPost(post)}>
+                            <PostBody postType={post.postType} text={post.post_text} photo={post.post_photo}  />
                         </div>
                         <div className={styles.commentSection}>
                             <p>{post.likes.length>0 ? post.likes.length + 'likes' : ''}  </p>
@@ -116,5 +128,8 @@ export default function SingleUser(){
                 )}
                 
             </div> }
+            {editPost && <ModalComponent isOpen={isOpen} onClose={()=>setIsOpen(false)}>
+                           <EditPost post={editPost} onClose={() => setEditPost(null)}  />
+            </ModalComponent> }
     </div>
 }

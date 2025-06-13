@@ -2,16 +2,20 @@
 A social media web application built using the MERN stack. This is the frontend repository.
 👉 Backend Repository
 [Back End](https://github.com/Vaahne/purplegram_backend)
+[Live Demo](https://purplegram-frontend.onrender.com)
     installed react, react-icons, dotenv ,react-router-dom , react-modal
 
 # 🚀 Tech Stack
-+ React
-+ React Router DOM
-+ React Icons
-+ React Modal
-+ .env configuration
-+ Socket.io-client for real time updates
-+ framer-motion
++ React – UI library
++ React Router DOM – Client-side routing
++ React Icons – Icons for UI elements
++ React Modal – Pop-up modals for interactions
++ .env – Environment variable management
++ Socket.io-client – Real-time updates
++ framer-motion – Animations for UI smoothness
+
+# Installation
+npm install react react-router-dom react-icons react-modal dotenv socket.io-client framer-motion
 
 # 🔑 Features
 🔐 Authentication
@@ -44,7 +48,14 @@ User Registration (/createuser)
 
 ## Data modle for Posts
 {
+  "_id": "ObjectId",
+  "userId": "ObjectId",
+  "post_text": "String",
+  "post_photo": "String (URL)",
+  "likes": ["ObjectId"],
+  "comments": ["ObjectId"]
 }
+
 
 ## pages
 - Landing page/homepage - show all route - path:'/'
@@ -70,3 +81,4 @@ User Registration (/createuser)
 + create very basic react page components for each page want to create
 + create routing for pages in app.jsx
 + create a super simple nav to navigate
+
