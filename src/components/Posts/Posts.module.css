@@ -1,18 +1,11 @@
 
 .postContainer{
     width: 45rem;
-    background: #fff;
+    background: #ffffff;
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ✅ Subtle depth */
     transition: transform 0.2s ease-in-out;
-    /* border: .2rem solid rgb(184, 179, 179); */
-    /* width: 36rem;
-    margin: 2rem auto;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 36px 4px rgba(0,0,0,.18); */
-    /* margin-top: 7rem; */
 }
 .parentContainer{
    display: flex;
@@ -22,6 +15,7 @@
     padding: 20px;
     background: linear-gradient(135deg, #F4F5FC, #E3E6F3);
     margin-top: 7rem;
+    min-height: 100vh;
 }
 .postContent{
   padding: 12px;
@@ -34,7 +28,7 @@
 .commentSection{
     display: flex;
     justify-content: space-between;
-    font-size: .9rem;
+    font-size: 14px;
     color: #777;
 }
 .postContainer:hover {
@@ -42,17 +36,17 @@
 }
 .spinner {
   animation: spin 1s linear infinite;
-  font-size: 2rem; /* or your desired size */
-  color: #555;     /* optional color */
+  font-size: 30px; /* or your desired size */
+  color: #6579B1;
   margin: 18rem auto;
 }
 .noPosts {
   text-align: center;
-  font-size: 1.2rem;
-  color: #999;
-  padding: 2rem;
+  font-size: 18px;
+  color: #d32f2f;
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+   from { transform: rotate(0deg); }
+   to { transform: rotate(360deg); }
 }

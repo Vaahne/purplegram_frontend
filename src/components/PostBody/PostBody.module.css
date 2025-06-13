@@ -4,10 +4,10 @@
     border-radius: 1rem;
     transition: box-shadow 0.3s ease-in-out;
     padding: 1rem;
-    background-color: #fdfdfd;
+    background-color: #FFFFFF;
      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    /* margin: 1rem auto; */
+    /* width: 97%; */
+    margin: 1rem auto;
 }
 .postBody:hover {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);

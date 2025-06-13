@@ -34,12 +34,12 @@ export default function Friends(){
       return <>
         <h2>Friends</h2>
         <div className={styles.friendContainer}>
-            {friends && friends.map(f=>{
+            {friends.length>0 ? friends.map(f=>{
               return <div className={styles.friend} onClick={()=>handleClick(f._id)}>
                   <img src={f.photo} className={styles.img}/>
                   <p className={styles.name}>{f.name}</p>
               </div>
-            })}
+            }) : <div className={styles.noConn}>No connections yet</div>}
         </div>
       </>
 }

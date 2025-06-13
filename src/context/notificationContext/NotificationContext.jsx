@@ -18,6 +18,7 @@ export default function NotificationProvider({children}){
             const getNotifications = async ()=>{
                 const resData = await apiRequest(`notification`,'GET',{},cookies.token,showError);
                 console.log('from notifications context ',resData);
+                console.log(typeof resData);
                 setNotifications(resData);
             };
                       

@@ -21,7 +21,7 @@ export default function Notifications(){
      const {user } = userInfo();
 
     function loading(){
-        return <FaSpinner />
+        return <div className={styles.caughtUp}>You all caught up</div>
     }
 
     async function handleClick(postId){

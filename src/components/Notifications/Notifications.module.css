@@ -31,3 +31,15 @@
     border: 2px solid #ffffff; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+.caughtUp{
+     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6579B1; /* ✅ Muted blue for subtle contrast */
+    background-color: #F4F5FC; /* ✅ Light, soft gradient */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ✅ Subtle depth */
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}

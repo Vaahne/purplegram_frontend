@@ -102,8 +102,7 @@ export default function SinglePost(){
 
      function handleClose() {
         setIsOpen(false);
-        nav("/posts"); // Redirect after closing modal
-        // nav(-1);
+        nav(-1);
     }
 
     function handleKeyDown(e){
@@ -154,6 +153,7 @@ export default function SinglePost(){
                 commentId,
                 updatedComment: newText,
             });
+            nav(-1);
             // setCommentInput(newText);
             // alert('updated successfully!!!');
         } catch (err) {

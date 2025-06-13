@@ -41,10 +41,12 @@ export default function SingleUser(){
     async function handleClick(e){
         try {
             const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token,showError);
+            console.log(`user:${user._id} and receiver: ${userId}`);
             socket.emit("sendFriendRequest",{
-                toUserId: userId,
-                request: resData
+                senderId: user._id,
+                receiverId: userId
             });
+           
             e.target.innerHTML = "Pending";
             console.log(resData);
         } catch (err) {
@@ -90,7 +92,10 @@ export default function SingleUser(){
                     {!searchedUser.isFriend && <button onClick={handleClick}>Connect</button>}
                 </div>
                 {/* Displaying the posts of particular user */}
-                {searchedUser.posts.map(post => {
+                {
+                searchedUser.posts.length == 0 ? (<h2 className={styles.noPosts}>No posts yet</h2>) :
+                
+                searchedUser.posts.map(post => {
                     return (
                     <>
                         <div key={post._id} className={styles.postContainer}>

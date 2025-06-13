@@ -1,5 +1,5 @@
 export default function PageNotFound(){
     return<>
-        <h1>404: Page Not Found</h1>
+        <h1 style={{margin: '9rem auto'}}>404: Page Not Found</h1>
     </>
 }

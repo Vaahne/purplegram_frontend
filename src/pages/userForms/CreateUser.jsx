@@ -70,7 +70,7 @@ export default function CreateUser(){
             <input type="submit" value="Create user"/>
             <p>Already have an account? <span><Link to='/'>Login</Link></span></p>
         </form>
-                {error && <div className={styles.error}>{error}</div>}     
+            {error && <div className={styles.error}>{error}</div>}     
         </div>
     </>
 }

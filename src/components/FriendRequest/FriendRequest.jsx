@@ -4,11 +4,12 @@ import { FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
 import { useError } from '../../context/errorHandlingContext/ErrorContext';
+import { userInfo } from '../../context/userContext/UserContext';
 
 export default function FriendRequest() {
-    // const {friendRequest:initialFriendRequests } = friendRequestInfo();
     const { friendRequests, setFriendRequests } = friendRequestInfo();
     const { cookies } = useAuth();
+    const {user} = userInfo();
 
     const { showError } = useError();
 
@@ -19,8 +20,13 @@ export default function FriendRequest() {
     async function updateFriendReq(userId, status) {
         try {
             const resData = await apiRequest(`friendreq/${userId}`, "PUT", { status }, cookies.token, showError);
-
-            console.log(resData);
+            console.log(`resdata sender :${userId} , receiverId: ${user._id}`);
+            if(status == 'Accepted')
+                 socket.emit("acceptFriendRequest", { senderId: userId, receiverId: user._id });
+            else
+                socket.emit("declineFriendRequest", { senderId: userId, receiverId: user._id });
+       
+            // console.log(resData);
             setFriendRequests(prevRequests => prevRequests.filter(req => req.sender_id._id !== userId));
         } catch (err) {
             console.error(err.message);

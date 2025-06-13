@@ -1,16 +1,14 @@
 .profile{
-
     text-align: center;
     background: #FFFFFF;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ✅ Subtle depth */
     width: 350px;
-    margin: 0 auto;
-   
+    margin: 0 auto;   
 }
 .profile h3 {
-    color: #374151; /* ✅ Dark gray for contrast */
+    color: #374151; 
     font-size: 24px;
     margin-bottom: 10px;
 }
@@ -52,6 +50,11 @@
     justify-content: space-between;
     font-size: .9rem;
     color: #6579B1;
+}
+.noPosts{
+  text-align: center;
+  font-size: 18px;
+  color: #d32f2f;
 }
 
 @media screen and (max-width: 600px) {
