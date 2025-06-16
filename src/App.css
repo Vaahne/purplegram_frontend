@@ -45,27 +45,21 @@ body, html {
     /* background-image: url('https://tse3.mm.bing.net/th?id=OIP.304IzBviAGgi13rxBoSxVQHaHa&pid=Api&P=0&h=180') no-repeat ; */
 }
 
-/* .rightContainer{
-  /* flex-grow: 1; */
-   /* flex: 1;
-    padding: 1rem;
-    overflow: auto; */
-/* }  */
-/* 
-
-.mainContent {
-  margin-left: 70px;
-  transition: margin-left 0.3s ease-in-out;
-}
-
-.sideNav.open ~ .mainContent {
-  margin-left: 220px;
-} */
 
 .sidebarOpen + .mainContent {
   margin-left: 220px;
 }
+.chat{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
 
+.chat-icon, .weather-icon{
+  font-size: 7rem;
+  margin-right: 3rem;
+  color: rgb(151, 43, 144);
+}
 
 .error {
   color: red;
