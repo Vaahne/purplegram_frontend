@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { FaSpinner } from "react-icons/fa";
 import styles from './Notifications.module.css';
 import { notificationInfo } from "../../context/notificationContext/NotificationContext";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,6 @@ export default function Notifications(){
     const nav = useNavigate();
     const {notifications,setNotifications} = notificationInfo();
     // const[notifications,setNotifications] = useState(initialNotifications);
-
 
      const{cookies} = useAuth();
      const {showError} = useError();
