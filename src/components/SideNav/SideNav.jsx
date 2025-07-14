@@ -4,6 +4,7 @@ import { FaCog, FaPlus, FaUserFriends,FaTimes, FaBars } from "react-icons/fa";
 import { userInfo } from "../../context/userContext/UserContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 // A simple side nav bar
 export default function SideNav(){
     const {user} = userInfo();
@@ -20,7 +21,7 @@ export default function SideNav(){
     return <>
          <div className={styles.hamburger} onClick={toggleNav}>
                 {isOpen ? <FaTimes /> : <FaBars />}
-            </div>
+        </div>
 
         {/* <nav className={styles.sideNav}> */}
          <nav className={`${styles.sideNav} ${isOpen ? styles.open : styles.closed}`}>
@@ -33,6 +34,6 @@ export default function SideNav(){
                 <li><Link to="/createpost" title="Create Post"><FaPlus className={styles.navItem}/></Link></li>
                 <li><Link to="/settings" title="Settings"><FaCog className={styles.navItem}/></Link></li>
             </ul>
-        </nav>
+        </nav>  
     </>
 }

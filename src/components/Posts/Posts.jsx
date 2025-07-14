@@ -1,4 +1,4 @@
-import socket from "../../socket.jsx";
+// import socket from "../../socket.jsx";
 import PostHeader from "../postHeader/PostHeader.jsx";
 import styles from './Posts.module.css';
 import Comments from "../Comments/Comments.jsx";
@@ -22,6 +22,7 @@ export default function Posts(){
     return  <div className={styles.parentContainer}>
       { posts.length>0 ? (posts.map(post=>{
                 const user = post.userId;
+                // console.log('user form posts',post);
                 return (
                       <div key={post._id} className={styles.postContainer}>
                           <PostHeader  date={post.timestamp} name={user.name} photo={user.photo} onClose={()=>handleRemove(post._id)}/>

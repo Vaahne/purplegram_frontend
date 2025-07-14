@@ -8,11 +8,7 @@ body, html {
     overflow: hidden; /* ✅ Prevents scrolling globally */
     height: 100%; /* ✅ Ensures no extra space is added */
 }
-/* body {
-  background: url('https://cdn.thenewstack.io/media/2023/03/4e161c3d-knowledge-graph-connections.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.3); /* fallback */
-/* } */ 
+
 
 #root {
   /* height: 70px; */
@@ -38,7 +34,7 @@ body, html {
 .rightContainer {
     flex: 1;
     background: #FFFFFF; /* ✅ Clean white background */
-    padding: 1.5rem;
+    padding: 0;
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ✅ Soft shadow effect */
     overflow-y: auto;
@@ -56,7 +52,7 @@ body, html {
 }
 
 .chat-icon, .weather-icon{
-  font-size: 7rem;
+  font-size: 2rem;
   margin-right: 3rem;
   color: rgb(151, 43, 144);
 }
@@ -81,7 +77,14 @@ body, html {
     }
 
     .rightContainer {
-        padding: 1rem;
+        /* padding: 1rem; */
         padding-bottom: 5rem; /* prevent overlap with bottom nav */
+    }
+    .chat{
+      position: fixed;
+      right: 0;
+      bottom: 4rem;
+      display: flex;
+      flex-direction: column;
     }
 }

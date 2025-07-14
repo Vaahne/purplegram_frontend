@@ -46,14 +46,14 @@ export default function SingleUser(){
     async function handleClick(e){
         try {
             const resData = await apiRequest(`friendreq/${userId}`,"POST",{},cookies.token,showError);
-            console.log(`user:${user._id} and receiver: ${userId}`);
+            // console.log(`user:${user._id} and receiver: ${userId}`);
             socket.emit("sendFriendRequest",{
                 senderId: user._id,
                 receiverId: userId
             });
            
             e.target.innerHTML = "Pending";
-            console.log(resData);
+            // console.log(resData);
         } catch (err) {
             console.error(err.message);
         }
@@ -120,7 +120,9 @@ export default function SingleUser(){
                             <p>{post.comments.length>0 ? post.comments.length+ 'comments' : ''}  </p>
                         </div>
                         <hr/>
-                        <Comments post={{...post,userId:{_id:searchedUser._id,name:searchedUser.name, photo:searchedUser.photo}}}/>
+                        <Comments post={post}/>
+                        {/* <Comments post={{...post,userId:{_id:searchedUser._id,name:searchedUser.name, photo:searchedUser.photo}}}/> */}
+                        {/* {console.log('post in singel user',post)} */}
                         </div>
                     </>
                     )

@@ -9,7 +9,6 @@ import { userInfo } from '../../context/userContext/UserContext';
 // import {useState} from 'react';
 
 export default function Comments({post}){
-    console.log(post);
     const{cookies} = useAuth();
     const nav = useNavigate();
     const {showError} = useError();
@@ -17,11 +16,12 @@ export default function Comments({post}){
     const {user } = userInfo();
     
     async function handleClick(e){
-        if(e.target.name=='likes'){
-
+        if(e.target.name === 'likes'){
+            console.log('Before like in comments',post);
             socket.emit("likePost",{postId: post._id,userId:user._id,toggleLike: !post.likes.includes(user._id)});
             await apiRequest(`posts/addlike/${post._id}`,"PUT",{},cookies.token,showError);
-        
+            console.log('after updating like',post);
+            
         }else{
         
             const resData = await apiRequest(`comments/${post._id}`,'GET',{},cookies.token,showError);
@@ -38,6 +38,7 @@ export default function Comments({post}){
     
     return <div className={styles.commentsContainer}>
             {/* <div><button onClick={handleClick} name="likes">Likes</button></div> */}
+            {/* { if(post.likes.includes(user._id)) console.log('liked',post.likes.includes(user._id))} */}
             <div> 
                     <button  onClick={handleClick}  name="likes"  className={post.likes.includes(user._id) ? styles.liked : styles.unliked}>Like</button>
             </div>

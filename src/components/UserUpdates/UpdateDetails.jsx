@@ -38,7 +38,7 @@ export default function UpdateDetails(){
             return setError('Please fill all the feilds'); 
         const status = await apiRequest('users','PUT',formData,cookies.token,showError);
         if(status) setUser({...user,photo:formData.photo,name:formData.name,email:formData.email});
-        nav('/');
+        nav(-1);
     }
 
     return <div>

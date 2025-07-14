@@ -8,7 +8,6 @@
     background: #ffffff;
     box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
     transition: left 0.3s ease-in-out; /* Smooth sliding effect */
-
     background: linear-gradient(135deg, #24283A, #374151); /* ✅ Sleek dark blue-gray gradient */
     box-shadow: 2px 0px 12px rgba(0, 0, 0, 0.2); /* ✅ Adds subtle depth */
     padding: 1.5rem;
@@ -22,7 +21,7 @@
     display: flex;
     flex-direction: column;
     /* justify-content: space-evenly; */
-    gap: 9rem;
+    gap: 4rem;
 }
 
 /* Profile Section */
@@ -101,21 +100,44 @@
     font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 700px) {
    
-    .sideNav >ul {
-        width: 100%;
+    .sideNav  {
+        width: 100vw;
         height: 4rem;
         display: flex;
         flex-direction: row;
-        /* justify-content: space-between; */
+        justify-content: space-around;
         align-items: center;
         position: fixed;
         bottom: 0;
         left: 0;
-        border-top: 1px solid #ccc;
-        border-right: none;
-        z-index: 1000;
+        top:auto;
+        padding: 0;
+    }
+    
+    .sideNav ul {
+        flex-direction: row;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+    .sideNav li {
+        padding: 0.5rem;
+        flex: 1;
+        text-align: center;
     }
 
+    .sideNav li:first-child {
+        /* border-bottom: none;
+        display: flex;
+        flex-direction: row;
+        border-radius: 50%;
+         */
+        display: none; 
+    }
 }

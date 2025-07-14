@@ -14,7 +14,7 @@ export default function useSocket() {
     console.log("Socket useEffect mounted");
 
     socket.on("updateLikes", ({ postId, userId, toggleLike }) => {
-      console.log("Received updateLikes", { postId, userId, toggleLike });
+      // console.log("Received updateLikes", { postId, userId, toggleLike });
       setPosts(prev =>
         prev.map(post =>
           post._id === postId

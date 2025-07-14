@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react';
 import styles from './UserUpdates.module.css';
 import { useAuth } from '../../context/authContext/auth';
 import apiRequest from '../../apiService/apiServiceCall';
-
+import { useNavigate } from 'react-router-dom';
 // export default function ChangePassword({setIsOpen}){
 export default function ChangePassword(){
 
@@ -12,6 +12,7 @@ export default function ChangePassword(){
         confirmPassword:''
     });
 
+    const nav = useNavigate();
     const {cookies} = useAuth();
     const [error,setError] = useState("");
     
@@ -43,6 +44,7 @@ export default function ChangePassword(){
         if(!res)
             setError('Wrong old password');
         console.log('res from change paswd',res);
+        nav(-1);
     }
 
     return <>
