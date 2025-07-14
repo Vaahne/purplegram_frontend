@@ -6,7 +6,8 @@
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background: url('https://img.freepik.com/free-vector/modern-background-social-media-icons_1017-4839.jpg') no-repeat center center fixed;
+    background: linear-gradient(purple,rgb(211, 147, 198));
+    /* background: url('https://img.freepik.com/free-vector/modern-background-social-media-icons_1017-4839.jpg') no-repeat center center fixed; */
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.3); /* fallback */
     /* background: linear-gradient(135deg, #6a0dad, #a4508b); */
@@ -42,7 +43,7 @@
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     text-align: center;
-    background: linear-gradient(135deg, #6a0dad, #7c3582);
+    background: linear-gradient(135deg, #bb89df, #672f6c);
     color:white;
     text-shadow: #f5f5f5;
     /* margin: auto; */
