@@ -45,8 +45,8 @@ export default function LandingPage(){
             <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
             <input type="submit" value='Login' className={styles.login}/>
            
-            <p>Don't have an account?</p>
-            <Link to="/createuser"><button className={styles.signup}>Sign up</button></Link>
+            <p>Don't have an account? <span><Link to='/createuser'>Sign up</Link></span></p>
+            {/* <Link to="/createuser"><button className={styles.signup}>Sign up</button></Link> */}
         </form> 
         </div>
     </>;
