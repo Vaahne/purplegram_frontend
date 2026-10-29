@@ -37,7 +37,7 @@ export default function LandingPage(){
         <div className={styles.textContainer}>
             {/* <img src={purplegramLogo} alt="Purplegram logo" className={styles.img}/> */}
             <h1 className={styles.name}>Purplegram</h1>
-            <p className={styles.caption}>Connecting people to share memories on Purplegram</p>
+            <p className={styles.caption}>Share moments. Stay connected.</p>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
             <h3>Login Page</h3>
