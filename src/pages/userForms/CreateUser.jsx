@@ -60,7 +60,7 @@ export default function CreateUser(){
             <input type="text" name="name" placeholder="Name" onChange={handleChange} required value={formData.name}/>
             <input type="email" name="email" placeholder="Email" onChange={handleChange} required value={formData.email}/>
             <input type="password" name="password" placeholder="Password" onChange={handleChange} required value={formData.password}/>
-            <input type="password" name="password2" placeholder="Confrim password" onChange={handleChange} required vaue={formData.password2}/>
+            <input type="password" name="password2" placeholder="Confirm password" onChange={handleChange} required vaue={formData.password2}/>
             <label>
                 Gender
                 <input type="radio" value="male" name="gender" onChange={handleChange} required />Male
