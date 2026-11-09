@@ -6,8 +6,7 @@ import styles from './userForm.module.css';
 import purplegramLogo from '../../assets/images/PurplegramLogo.png'
 
 export default function LandingPage(){
-    const {cookies} = useAuth();
-    const {login} = useAuth();
+    const { cookies, login } = useAuth();
     const nav = useNavigate();
 
     useEffect(()=>{
@@ -26,10 +25,16 @@ export default function LandingPage(){
 
     async function handleSubmit(e){
         e.preventDefault();
-        if(!formData.email || !formData.password)
+        const email = formData.email.trim().toLowerCase();
+        if(!email || !formData.password)
             return alert('Please fill the details');
-        await login(formData);
-        nav('/posts');
+        try{
+            await login({...formData, email});
+            nav('/posts');
+        } catch (error) {
+            console.error('Login failed:', error);
+            alert('Invalid email or password');
+        }
     }
 
     return <> 

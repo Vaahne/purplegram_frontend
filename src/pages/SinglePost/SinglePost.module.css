@@ -1,12 +1,11 @@
 .postContainer {
-  /* max-width: 600px; */
-  /* height: 80vh; */
   margin: 5vh auto;
   background-color: #fff;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e2a4a;
   /* overflow-y: auto; */
 }
 
@@ -30,6 +29,7 @@
   border-radius: 8px;
   font-size: 0.95rem;
   line-height: 1.4;
+  color: #1e2a4a;               /* dark text on the light comment background */
 }
 
 .comment strong {
