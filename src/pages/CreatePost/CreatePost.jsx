@@ -7,6 +7,7 @@ import { useError } from '../../context/errorHandlingContext/ErrorContext';
 import { postsInfo } from '../../context/postContext/PostContext';
 
 export default function CreatePost(){
+
     const {posts,setPosts} = postsInfo();
 
     const [error,setError] = useState('');
@@ -59,7 +60,7 @@ export default function CreatePost(){
     return <>
         <form onSubmit={handleSubmit} className={styles.form}>
             <h3>Create Post</h3>
-            <input type="textarea" placeholder='Your post feed' name="post_text" onChange={handleChange} value={formData.post_text}/>
+            <input type="textarea" placeholder='Share something with your feed' name="post_text" onChange={handleChange} value={formData.post_text}/>
             <input type="text" name="photo" onChange={handleChange} value={formData.photo} placeholder="Enter your image url" />
             <input type="submit" value="Create Post" />
         </form>

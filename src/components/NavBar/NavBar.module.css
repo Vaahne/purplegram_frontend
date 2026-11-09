@@ -85,6 +85,10 @@
     z-index: 200;
 }
 .search{
+    color: #1e2a4a;              /* dark navy text, about 14:1 contrast on white */
+    caret-color: #4b5d89;        /* blinking cursor matches the nav blue */
+    border: 2px solid #c7cfe6;   /* visible edge against the nav */
+
     background-color: rgba(255, 255, 255, 0.9); 
     border: 2px solid transparent;
     border-radius: 1.5rem;

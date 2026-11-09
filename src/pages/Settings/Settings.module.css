@@ -5,8 +5,10 @@
   align-items: center;
   gap: 1.5rem;
   padding: 3rem 1rem;
-  max-width: 400px;
-  margin: 8rem auto;
+  /* max-width: 18rem; */
+  width: min(100% - 2rem, 620px);
+  margin: 7rem auto 1.5rem auto;
+  /* margin: 8rem auto; */
   background-color: #ffffff;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -26,7 +28,7 @@
 
 .settingsContainer div {
   background-color: #6579B1;
-  width: 100%;
+  width: 13rem;
   padding: 0.75rem 1rem;
   /* background-color: #f4f4f4; */
   border-radius: 8px;
